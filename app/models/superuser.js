@@ -5,10 +5,8 @@ const schemaOptions = {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
 };
 
-const superUserSchema = new mongoose.Schema(
-  {
+const superUserSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-
     Login: {
       email: {
         type: String,
@@ -20,14 +18,12 @@ const superUserSchema = new mongoose.Schema(
         required: true,
       },
     },
-
     Personal: {
       name: {
         type: String,
         required: true,
       },
     },
-
     Social: {
       phone: {
         type: Number,
@@ -45,7 +41,6 @@ const superUserSchema = new mongoose.Schema(
         match: /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi,
       },
     },
-
     Optionals: {
       introduction: {
         type: String,
@@ -66,7 +61,6 @@ const superUserSchema = new mongoose.Schema(
       },
       languages_known: [{ type: String }],
     },
-
     MetaData: {
       timestamp: {
         type: Date,
