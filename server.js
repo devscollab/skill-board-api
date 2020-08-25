@@ -3,6 +3,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+
+const loginRoutes = require('./app/routes/login')
+const studentRoutes = require('./app/routes/student')
+const superuserRoutes = require('./app/routes/superuser')
+
 const app = express();
 
 dotenv.config();
@@ -31,6 +36,25 @@ app.get('/', (req, res) => {
         message: "success"
     })
 })
+
+app.use("/login", loginRoutes);
+app.use("/student", studentRoutes);
+app.use("/superuser", superuserRoutes);
+
+app.use((req, res, next) => {
+    const error = new Error("Not found");
+    error.status = 404;
+    next(error);
+  });
+  
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+      error: {
+        message: error.message
+      }
+    });
+  });
 
 app.listen(3000, () => {
     console.log("server running on port 3000");
