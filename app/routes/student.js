@@ -2,12 +2,16 @@ const express = require("express");
 const router = express.Router();
 
 
-router.get("/", (req, res, next) => {
-    res.send('On Student Page! (Get)')
+router.patch("/update/:id", (req, res, next) => {
+  res.status(201).json({
+    message: "Updated"+req.params.id
+  })
   });
 
-router.post("/", (req, res, next) => {
-    res.send('On Student Page! (post)')
+router.delete("/delete/:id", (req, res, next) => {
+  res.status(201).json({
+    message: "Deleted"+req.params.id
+  })
   });
 
 module.exports = router;

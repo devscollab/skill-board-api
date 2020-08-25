@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 
 const loginRoutes = require('./app/routes/login')
 const studentRoutes = require('./app/routes/student')
+const registerRoutes = require('./app/routes/register')
 const superuserRoutes = require('./app/routes/superuser')
 
 const app = express();
@@ -35,8 +36,9 @@ app.get('/', (req, res) => {
     res.status(200).json({
         message: "success"
     })
-})
+});
 
+app.use("/register", registerRoutes);
 app.use("/login", loginRoutes);
 app.use("/student", studentRoutes);
 app.use("/superuser", superuserRoutes);
