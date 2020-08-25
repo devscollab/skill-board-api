@@ -41,6 +41,7 @@ app.use("/login", loginRoutes);
 app.use("/student", studentRoutes);
 app.use("/superuser", superuserRoutes);
 
+//handling bad requests
 app.use((req, res, next) => {
     const error = new Error("Not found");
     error.status = 404;
@@ -56,6 +57,7 @@ app.use((error, req, res, next) => {
     });
   });
 
+//listening to server
 app.listen(3000, () => {
     console.log("server running on port 3000");
 })
