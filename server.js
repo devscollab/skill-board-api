@@ -29,35 +29,37 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
+//connection to database
+const uri = process.env.DB_CONNECTION_STRING;
+mongoose.connect(
+    uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }, () => {
+        console.log("connected to database");
+    })
 
 //routes
-app.get('/', (req, res) => {
-    console.log("working");
-    res.status(200).json({
-        message: "success"
-    })
-});
-
-app.use("/register", registerRoutes);
-app.use("/login", loginRoutes);
-app.use("/student", studentRoutes);
-app.use("/superuser", superuserRoutes);
+app.use("/api/register", registerRoutes);
+app.use("/api/login", loginRoutes);
+app.use("/api/student", studentRoutes);
+app.use("/api/superuser", superuserRoutes);
 
 //handling bad requests
 app.use((req, res, next) => {
     const error = new Error("Not found");
     error.status = 404;
     next(error);
-  });
-  
+});
+
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
     res.json({
-      error: {
-        message: error.message
-      }
+        error: {
+            message: error.message
+        }
     });
-  });
+});
 
 //listening to server
 app.listen(3000, () => {

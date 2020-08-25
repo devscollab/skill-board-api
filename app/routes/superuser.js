@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
+const superuserController = require("../controllers/superuser");
 
-router.get("/", (req, res, next) => {
-    res.send('On SuperUser Page! (Get)')
-  });
+router.get('/all', superuserController.getAllSuperusers)
 
-router.post("/", (req, res, next) => {
-    res.send('On SuperUser Page! (post)')
-  });
+router.get('/:id', superuserController.getSuperuserById);
+
+router.patch("/update/:id", superuserController.updateSuperuserById);
+
+router.delete("/delete/:id", superuserController.deleteSuperuserById);
 
 module.exports = router;
