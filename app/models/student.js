@@ -7,10 +7,8 @@ const schemaOptions = {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
 };
 
-const studentSchema = new mongoose.Schema(
-  {
+const studentSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-
     Login: {
       email: {
         type: String,
@@ -22,7 +20,6 @@ const studentSchema = new mongoose.Schema(
         required: true,
       },
     },
-
     Personal: {
       name: {
         type: String,
@@ -50,7 +47,6 @@ const studentSchema = new mongoose.Schema(
         required: true,
       },
     },
-
     Social: {
       phone: {
         type: Number,
@@ -80,7 +76,6 @@ const studentSchema = new mongoose.Schema(
         required: true,
       },
     },
-
     // All required
     Skills: {
       skills: [
@@ -105,7 +100,6 @@ const studentSchema = new mongoose.Schema(
         required: true,
       },
     },
-
     Optionals: {
       introduction: {
         type: String,
@@ -126,7 +120,6 @@ const studentSchema = new mongoose.Schema(
       },
       languages_known: [{ type: String }],
     },
-
     MetaData: {
       timestamp: {
         type: Date,
