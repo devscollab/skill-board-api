@@ -121,10 +121,6 @@ const studentSchema = new mongoose.Schema({
       languages_known: [{ type: String }],
     },
     MetaData: {
-      timestamp: {
-        type: Date,
-        default: Date.now(),
-      },
       hasAdminAccess: {
         type: Boolean,
         required: true,
@@ -172,6 +168,6 @@ module.exports = mongoose.model("Student", studentSchema);
 // mother tongue - str
 // languages known - str    -> Array of Strings
 // -------------------------Meta Data
-// timestamp - date
+
 //                                                          ---> Removed has admin access
 // github metadata object - object
