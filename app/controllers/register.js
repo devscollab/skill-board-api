@@ -40,8 +40,8 @@ exports.registerStudent = (req, res) => {
       languages_known: req.body.Optionals.languages_known,
     },
     MetaData: {
-      hasAdminAccess: req.body.Optionals.hasAdminAccess,
-      github_metadata_object: req.body.Optionals.github_metadata_object,
+      hasAdminAccess: req.body.MetaData.hasAdminAccess,
+      github_metadata_object: req.body.MetaData.github_metadata_object,
     },
   });
   console.log("Student");
