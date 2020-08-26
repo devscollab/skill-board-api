@@ -29,6 +29,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
+// In case Atlas Doesnt Work -> uncomment it
+// mongoose.connect('mongodb://localhost/Skill',
+//     { useNewUrlParser: true, useUnifiedTopology: true }
+// );
+
+
 //connection to database
 const uri = process.env.DB_CONNECTION_STRING;
 mongoose.connect(
