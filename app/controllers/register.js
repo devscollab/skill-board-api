@@ -5,7 +5,7 @@ const Student = require("../models/student");
 const SuperUser = require("../models/superuser");
 
 exports.registerStudent = (req, res) => {
-    const password = req.body.Login.password;
+    const password = req.body.password;
     bcrypt.hash(password, 10, (err, result) => {
         if (err) {
             res.status(500).json({
@@ -16,10 +16,12 @@ exports.registerStudent = (req, res) => {
         if (result) {
             const student = new Student({
                 _id: new mongoose.Types.ObjectId(),
-                Login: {
+                /*Login: {
                     email: req.body.Login.email,
                     password: result,
-                },
+                },*/
+                email: req.body.email,
+                password: result,
                 Personal: {
                     name: req.body.Personal.name,
                     college: req.body.Personal.college,
@@ -74,7 +76,7 @@ exports.registerStudent = (req, res) => {
 };
 
 exports.registerSuperuser = (req, res) => {
-    const password = req.body.Login.password;
+    const password = req.body.password;
     bcrypt.hash(password, 10, (err, result) => {
         if (err) {
             res.status(500).json({
@@ -85,10 +87,8 @@ exports.registerSuperuser = (req, res) => {
         if (result) {
             const superuser = new SuperUser({
                 _id: new mongoose.Types.ObjectId(),
-                Login: {
-                    email: req.body.Login.email,
-                    password: result,
-                },
+                email: req.body.email,
+                password: result,
                 Personal: {
                     name: req.body.Personal.name,
                 },
