@@ -12,7 +12,7 @@ module.exports = function(req, res, next){
             next()
         }
         catch(err){
-            send('Invalid Token')
+            res.send('Invalid Token')
         }
         
     }
