@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 
 const Student = require("../models/student");
 const SuperUser = require("../models/superuser");
@@ -16,7 +17,8 @@ exports.loginStudent = (req, res) => {
                     .then(result => {
                         if (result === true) {
                             const token = jwt.sign({
-                                id:"some id"      //Add parameter here which we want to send in token
+                                id:"some id" ,     //Add parameter here which we want to send in token
+                                role:"student"
                               },
                               'ThisIsTopSecret', //This needs to be change
                               {
@@ -48,9 +50,17 @@ exports.loginSuperuser = (req, res) => {
                 bcrypt.compare(req.body.password, docs[0].password)
                     .then(result => {
                         if (result === true) {
+                             const token = jwt.sign({
+                                id:"some id" ,     //Add parameter here which we want to send in token
+                                role:"superuser"
+                              },
+                              'ThisIsTopSecret', //This needs to be change
+                              {
+                                expiresIn:'10h'
+                              })
                             res.status(200).json({
                                 message: "login successful",
-                                token: "some encrypted token"
+                                token: token
                             })
                         } else {
                             res.status(401).json({
