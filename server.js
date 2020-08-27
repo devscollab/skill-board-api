@@ -8,6 +8,7 @@ const loginRoutes = require('./app/routes/login')
 const studentRoutes = require('./app/routes/student')
 const registerRoutes = require('./app/routes/register')
 const superuserRoutes = require('./app/routes/superuser')
+const auth = require('./app/controllers/auth')  //this auth can be used to check if token is present or not
 
 const app = express();
 
