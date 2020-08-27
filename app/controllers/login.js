@@ -15,9 +15,16 @@ exports.loginStudent = (req, res) => {
                 bcrypt.compare(req.body.password, docs[0].password)
                     .then(result => {
                         if (result === true) {
+                            const token = jwt.sign({
+                                id:"some id"      //Add parameter here which we want to send in token
+                              },
+                              'ThisIsTopSecret', //This needs to be change
+                              {
+                                expiresIn:'10h'
+                              })
                             res.status(200).json({
                                 message: "login successful",
-                                token: "some encrypted token"
+                                token: token    //token added
                             })
                         } else {
                             res.status(401).json({
