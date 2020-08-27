@@ -17,16 +17,15 @@ exports.loginStudent = (req, res) => {
                     .then(result => {
                         if (result === true) {
                             const token = jwt.sign({
-                                    id: "some id", //Add parameter here which we want to send in token
+                                    email: req.body.email,
                                     role: "student"
                                 },
-                                process.env.JWT_KEY, //This needs to be change
-                                {
+                                process.env.JWT_KEY, {
                                     expiresIn: '10h'
                                 })
                             res.status(200).json({
                                 message: "login successful",
-                                token: token //token added
+                                token: token
                             })
                         } else {
                             res.status(401).json({
@@ -51,11 +50,10 @@ exports.loginSuperuser = (req, res) => {
                     .then(result => {
                         if (result === true) {
                             const token = jwt.sign({
-                                    id: "some id", //Add parameter here which we want to send in token
+                                    email: req.body.email,
                                     role: "superuser"
                                 },
-                                process.env.JWT_KEY, //This needs to be change
-                                {
+                                process.env.JWT_KEY, {
                                     expiresIn: '10h'
                                 })
                             res.status(200).json({
