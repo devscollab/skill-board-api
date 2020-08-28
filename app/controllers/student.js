@@ -22,6 +22,7 @@ exports.getAllStudentProfiles = (req, res) => {
         .then(docs => {
             res.status(200).json({
                 message: "success",
+                size: docs.length,
                 docs: docs
             })
         })
@@ -64,6 +65,27 @@ exports.deleteStudentProfileById = (req, res) => {
             })
         })
         .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
+}
+
+exports.getStudentsByQuery = (req, res) => {
+    const pageNumber = req.query.page;
+    const docsLimit = req.query.limit
+    const skipAmount = pageNumber * docsLimit;
+    Student.find()
+        .limit(10) //unable to set it dynamically, mongo error is being raised
+        .skip(skipAmount)
+        .then(docs => {
+            res.status(200).json({
+                message: "success",
+                size: docs.length,
+                docs: docs
+            })
+        }).catch(err => {
             res.status(500).json({
                 message: "internal server error",
                 error: err

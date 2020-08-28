@@ -8,7 +8,9 @@ const loginRoutes = require('./app/routes/login')
 const studentRoutes = require('./app/routes/student')
 const registerRoutes = require('./app/routes/register')
 const superuserRoutes = require('./app/routes/superuser')
-const auth = require('./app/controllers/auth')  //this auth can be used to check if token is present or not
+const unverifiedProfileRoutes = require('./app/routes/profileVerification')
+
+const auth = require('./app/controllers/auth') //this auth can be used to check if token is present or not
 
 const app = express();
 
@@ -51,6 +53,7 @@ app.use("/api/register", registerRoutes);
 app.use("/api/login", loginRoutes);
 app.use("/api/student", studentRoutes);
 app.use("/api/superuser", superuserRoutes);
+app.use("/api/unverified", unverifiedProfileRoutes);
 
 //handling bad requests
 app.use((req, res, next) => {

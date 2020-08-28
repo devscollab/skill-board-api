@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 const email = require('./email');
 
-const Student = require("../models/student");
 const SuperUser = require("../models/superuser");
+const Profile = require("../models/unverifiedProfiles");
 
 exports.registerStudent = (req, res) => {
     const password = req.body.password;
@@ -15,12 +15,8 @@ exports.registerStudent = (req, res) => {
             })
         }
         if (result) {
-            const student = new Student({
+            const newProfile = new Profile({
                 _id: new mongoose.Types.ObjectId(),
-                /*Login: {
-                    email: req.body.Login.email,
-                    password: result,
-                },*/
                 email: req.body.email,
                 password: result,
                 Personal: {
@@ -58,14 +54,14 @@ exports.registerStudent = (req, res) => {
                 },
             });
 
-            student.save()
+            newProfile.save()
                 .then(doc => {
                     email.successful_registration(req.body.email);
                     res.status(200).json({
                         message: "Student resgistration successful",
                         doc: doc,
                     });
-                    
+
                 })
                 .catch(err => {
                     console.log(err);

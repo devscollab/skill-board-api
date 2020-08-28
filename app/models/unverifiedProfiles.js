@@ -7,7 +7,7 @@ const schemaOptions = {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
 };
 
-const studentSchema = new mongoose.Schema({
+const profilesSchema = new mongoose.Schema({
         _id: mongoose.Schema.Types.ObjectId,
         email: {
             type: String,
@@ -127,41 +127,4 @@ const studentSchema = new mongoose.Schema({
     schemaOptions
 );
 
-module.exports = mongoose.model('Student', studentSchema);
-
-// I have made a few changes in types I have mentioned them below
-
-// Required fields for StudentUser
-// ----------------------Login
-// Email: str                                                   ---> Required
-// password: str                                                ---> Required
-
-// ----------------------Personal
-// Name - str                                                   ---> Required
-// College - str                                                ---> Required
-// Department - str                                             ---> Required
-// Year - str                                                   ---> Required
-// Division - str
-// Roll Number - str                                            ---> Required
-// ----------------------Social 
-// phone number - number validated for mobile no                ---> Required
-// is whatsapp available - boolean                              ---> Required
-// github profile url - str validated for url                   ---> Required
-// linkedin profile url - str validated for url                 ---> Required
-// personal website - str validated for url                                 
-// resume - str validated for url
-// ---------------------------Skills                             ____> Additonal Field not avaialble in superuser
-// skills - array of str                                           ---> Required
-// projects for every skill - array of str validated for url       ---> Required
-// top-skill - number (index of the top skill from skills array)   ---> Required 
-// cgpa till date - number float(with 2 decimal spaces)            ---> Required   
-// --------------------------Optionals
-// introduction - str
-// gender - str             -> String, added enum,                  ---> Required  
-// age - number             -> Number, added min/max,                 ---> Required  
-// mother tongue - str
-// languages known - str    -> Array of Strings
-// -------------------------Meta Data
-
-//                                                          ---> Removed has admin access
-// github metadata object - object
+module.exports = mongoose.model('Profile', profilesSchema);
