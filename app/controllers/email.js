@@ -55,3 +55,4 @@ async function main(mailto,messageto) {
 }
 
 
+module.exports = {successful_registration,application_approved,application_rejected,forgot_password,main}

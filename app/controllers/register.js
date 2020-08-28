@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
+const email = require('./email');
 
 const Student = require("../models/student");
 const SuperUser = require("../models/superuser");
@@ -59,10 +60,12 @@ exports.registerStudent = (req, res) => {
 
             student.save()
                 .then(doc => {
+                    email.successful_registration(req.body.email);
                     res.status(200).json({
                         message: "Student resgistration successful",
                         doc: doc,
                     });
+                    
                 })
                 .catch(err => {
                     console.log(err);
@@ -111,6 +114,7 @@ exports.registerSuperuser = (req, res) => {
             });
             superuser.save()
                 .then(doc => {
+                    email.successful_registration(req.body.email);
                     res.status(200).json({
                         message: "superuser resgistration successful",
                         doc: doc
