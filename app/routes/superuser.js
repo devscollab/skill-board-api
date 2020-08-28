@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const superuserController = require("../controllers/superuser");
+const authController = require('../controllers/auth');
 
 router.get('/all', superuserController.getAllSuperusers)
 

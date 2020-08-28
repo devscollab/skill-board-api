@@ -17,16 +17,15 @@ exports.loginStudent = (req, res) => {
                     .then(result => {
                         if (result === true) {
                             const token = jwt.sign({
-                                id:"some id" ,     //Add parameter here which we want to send in token
-                                role:"student"
-                              },
-                              'ThisIsTopSecret', //This needs to be change
-                              {
-                                expiresIn:'10h'
-                              })
+                                    email: req.body.email,
+                                    role: "student"
+                                },
+                                process.env.JWT_KEY, {
+                                    expiresIn: '10h'
+                                })
                             res.status(200).json({
                                 message: "login successful",
-                                token: token    //token added
+                                token: token
                             })
                         } else {
                             res.status(401).json({
@@ -50,14 +49,13 @@ exports.loginSuperuser = (req, res) => {
                 bcrypt.compare(req.body.password, docs[0].password)
                     .then(result => {
                         if (result === true) {
-                             const token = jwt.sign({
-                                id:"some id" ,     //Add parameter here which we want to send in token
-                                role:"superuser"
-                              },
-                              'ThisIsTopSecret', //This needs to be change
-                              {
-                                expiresIn:'10h'
-                              })
+                            const token = jwt.sign({
+                                    email: req.body.email,
+                                    role: "superuser"
+                                },
+                                process.env.JWT_KEY, {
+                                    expiresIn: '10h'
+                                })
                             res.status(200).json({
                                 message: "login successful",
                                 token: token
