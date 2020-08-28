@@ -12,4 +12,6 @@ router.patch("/update/:id", studentController.updateStudentProfileById);
 
 router.delete("/delete/:id", studentController.deleteStudentProfileById);
 
+router.get("/", studentController.getStudentsByQuery);
+
 module.exports = router;
