@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 const superuserController = require("../controllers/superuser");
-const authController = require('../controllers/auth');
+const auth = require('../controllers/auth');
 
-router.get('/all', superuserController.getAllSuperusers)
+router.get('/all', auth.superuserAuth, superuserController.getAllSuperusers)
 
-router.get('/:id', superuserController.getSuperuserById);
+router.get('/:id', auth.superuserAuth, superuserController.getSuperuserById);
 
-router.patch("/update/:id", superuserController.updateSuperuserById);
+router.patch("/update/:id", auth.superuserAuth, superuserController.updateSuperuserById);
 
-router.delete("/delete/:id", superuserController.deleteSuperuserById);
+router.delete("/delete/:id", auth.superuserAuth, superuserController.deleteSuperuserById);
 
 module.exports = router;
