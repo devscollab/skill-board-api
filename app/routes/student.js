@@ -2,16 +2,16 @@ const express = require("express");
 const router = express.Router();
 
 const studentController = require('../controllers/student');
-const authController = require('../controllers/auth');
+const auth = require('../controllers/auth');
 
-router.get("/all", studentController.getAllStudentProfiles)
+router.get("/all", auth.studentAuth, studentController.getAllStudentProfiles)
 
-router.get("/:id", studentController.getStudentProfileById)
+router.get("/:id", auth.studentAuth, studentController.getStudentProfileById)
 
-router.patch("/update/:id", studentController.updateStudentProfileById);
+router.patch("/update/:id", auth.studentAuth, studentController.updateStudentProfileById);
 
-router.delete("/delete/:id", studentController.deleteStudentProfileById);
+router.delete("/delete/:id", auth.studentAuth, studentController.deleteStudentProfileById);
 
-router.get("/", studentController.getStudentsByQuery);
+router.get("/", auth.studentAuth, studentController.getStudentsByQuery);
 
 module.exports = router;

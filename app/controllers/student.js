@@ -36,13 +36,12 @@ exports.getAllStudentProfiles = (req, res) => {
 }
 
 exports.updateStudentProfileById = (req, res) => {
-
     const id = req.params.id;
     const updateOperations = req.body;
     for (const operations in updateOperations) {
         updateOperations[operations.propName] = operations.value;
     }
-    
+
     Student.update({ _id: id }, { $set: updateOperations })
         .exec()
         .then(doc => {
@@ -57,8 +56,6 @@ exports.updateStudentProfileById = (req, res) => {
                 error: err
             })
         });
-    
-
 }
 
 exports.deleteStudentProfileById = (req, res) => {
@@ -97,4 +94,5 @@ exports.getStudentsByQuery = (req, res) => {
             })
         })
 }
+
 

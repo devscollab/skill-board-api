@@ -5,7 +5,7 @@ exports.studentAuth = (req, res, next) => {
     if (token) {
         try {
             const decoded = jwt.decode(token.split(' ')[1]);
-            if (decoded.role === "student") {
+            if (decoded.role === "student" || decoded.role === "superuser") {
                 next()
             } else {
                 res.status(401).json({

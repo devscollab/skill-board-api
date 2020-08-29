@@ -1,6 +1,8 @@
 const UnverifiedProfiles = require('../models/unverifiedProfiles');
 const Student = require('../models/student');
 
+const email = require('../controllers/email');
+
 exports.getUnverifiedProfiles = (req, res) => {
     UnverifiedProfiles.find()
         .then(docs => {
@@ -64,6 +66,7 @@ exports.approve = (req, res) => {
                     UnverifiedProfiles.findByIdAndDelete({ _id: req.params.id })
                         .then(doc => {
                             //send approval email before sending response to the user by id defined in the request parameters
+                            email.application_approved(doc.email);
                             res.status(200).json({
                                 message: "success! profile is approved. Approval notification is delivered to the user",
                                 doc: doc
@@ -81,7 +84,17 @@ exports.approve = (req, res) => {
 
 exports.reject = (req, res) => {
     //send rejection email before sending response to the user by id defined in the request parameters
-    res.status(200).json({
-        message: "success! profile is rejected. Rejection notification is sent to the user"
-    })
+    UnverifiedProfiles.findById({ _id: req.params.id })
+        .then(doc => {
+            email.application_rejected(doc.email);
+            res.status(200).json({
+                message: "success! profile is rejected. Rejection notification is sent to the user"
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
 }
