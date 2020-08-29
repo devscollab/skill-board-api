@@ -36,7 +36,7 @@ exports.getAllStudentProfiles = (req, res) => {
 }
 
 exports.updateStudentProfileById = (req, res) => {
-    /*
+
     const id = req.params.id;
     const updateOperations = req.body;
     for (const operations in updateOperations) {
@@ -57,12 +57,8 @@ exports.updateStudentProfileById = (req, res) => {
                 error: err
             })
         });
-    */
-    try {
-        findandupdate(req, res) //, id, updateOperations);
-    } catch (err) {
-        console.log(err);
-    }
+    
+
 }
 
 exports.deleteStudentProfileById = (req, res) => {
@@ -102,31 +98,3 @@ exports.getStudentsByQuery = (req, res) => {
         })
 }
 
-
-async function findandupdate(req, res) {
-    const id = req.params.id;
-    const updateOperations = req.body;
-    for (const operations in updateOperations) {
-        updateOperations[operations.propName] = operations.value;
-    }
-    await Student.findOne({ _id: id })
-        .then(doc => {
-            updationKeys = Object.keys(updateOperations);
-            console.log(updationKeys)
-                //need some code here to fix overriding
-        })
-    await Student.updateOne({ _id: id }, { $set: updateOperations })
-        .exec()
-        .then(doc => {
-            res.status(200).json({
-                message: "successfully updated",
-                docs: doc
-            })
-        })
-        .catch(err => {
-            res.status(500).json({
-                message: "internal server error",
-                error: err
-            })
-        });
-}
