@@ -55,3 +55,31 @@ exports.superuserAuth = (req, res, next) => {
         })
     }
 }
+
+exports.forgotPasswordAuth = (req, res, next) => {
+    const token = req.headers.authorization;
+    if (token) {
+        try {
+            const decoded = jwt.decode(token.split(' ')[1]);
+            if ((decoded.role === "student" || decoded.role === "superuser") && decoded.task === "forgot password") {
+                next()
+            } else {
+                res.status(401).json({
+                    message: "Auth failed",
+                    error: "cannot grant access to the resource"
+                })
+            }
+        } catch (err) {
+            res.status(401).json({
+                message: "Auth failed",
+                error: "token was tampered"
+            })
+        }
+
+    } else {
+        res.status(401).json({
+            message: "Auth failed",
+            error: "token not found"
+        })
+    }
+}

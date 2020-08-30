@@ -95,4 +95,8 @@ exports.getStudentsByQuery = (req, res) => {
         })
 }
 
-
+exports.updatepassword = (req, res) => {
+    res.status(200).json({
+        message: "updating password for id:" + req.params.id,
+    })
+}
