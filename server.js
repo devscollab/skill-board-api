@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const ejs = require("ejs");
+const path = require('path')
+const fs = require("fs");
 
 const loginRoutes = require('./app/routes/login')
 const studentRoutes = require('./app/routes/student')
