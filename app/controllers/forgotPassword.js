@@ -13,6 +13,13 @@ function getOTP() {
     return Math.floor(100000 + Math.random() * 900000);
 }
 
+exports.cleanCollection = async(req, res) => {
+    Otp.remove({})
+        .then(doc => {
+            console.log("removed all residue OTPs");
+        })
+}
+
 exports.resetStudentPassword = async(req, res) => {
     let randomNumber = getOTP();
     let id = req.params.id;
@@ -98,7 +105,7 @@ exports.verifyOTP = async(req, res) => {
                 role: doc.role,
                 task: "forgot password"
             }, process.env.JWT_KEY, {
-                expiresIn: '10h'
+                expiresIn: 60 * 10 //token valid for next 10 mins only
             })
 
             res.status(200).json({

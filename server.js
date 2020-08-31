@@ -76,6 +76,15 @@ app.use((error, req, res, next) => {
     });
 });
 
+//clean otp collection each 6 hrs
+// const passwordReset = require('./app/controllers/forgotPassword');
+// setInterval(passwordReset.cleanCollection, 2160000000);
+
+//clean otp collection every 10 mins
+const passwordReset = require('./app/controllers/forgotPassword');
+setInterval(passwordReset.cleanCollection, 600000);
+
+
 //listening to server
 app.listen(3000, () => {
     console.log("server running on port 3000");

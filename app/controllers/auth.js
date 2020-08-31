@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+const Otp = require('../models/otp');
+
 exports.studentAuth = (req, res, next) => {
     const payload = req.headers.authorization;
     if (payload) {
@@ -84,7 +86,7 @@ exports.forgotPasswordAuth = (req, res, next) => {
             const token = payload.split(' ')[1];
             jwt.verify(token, process.env.JWT_KEY, (err, result) => {
                 if (err) {
-                    //clean the dead OTP from collection - code required
+                    Otp.findOneAndDelete({ otp: req.body.OTP })
                     res.status(401).json({
                         message: "Auth failed",
                         error: "token expired"
