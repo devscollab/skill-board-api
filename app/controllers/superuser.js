@@ -92,3 +92,32 @@ exports.getSuperUsersByQuery = (req, res) => {
             })
         })
 }
+
+exports.updatePassword = async(req, res) => {
+    const password = req.body.password;
+    await bcrypt.hash(password, 10, (err, result) => {
+        if (err) {
+            res.status(500).json({
+                message: "some error occured while storing credentials",
+                error: err
+            })
+        }
+        if (result) {
+            const id = req.params.id;
+            SuperUser.updateOne({ _id: id }, { $set: { password: result } })
+                .exec()
+                .then(doc => {
+                    res.status(200).json({
+                        message: "successfully password updated",
+                        docs: doc
+                    })
+                })
+                .catch(err => {
+                    res.status(500).json({
+                        message: "internal server error",
+                        error: err
+                    })
+                });
+        }
+    })
+}

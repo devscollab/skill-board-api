@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Student = require("../models/student");
 const { compareSync } = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 exports.getStudentProfileById = (req, res) => {
     Student.find({ _id: req.params.id })
@@ -95,4 +96,31 @@ exports.getStudentsByQuery = (req, res) => {
         })
 }
 
-
+exports.updatePassword = async(req, res) => {
+    const password = req.body.password;
+    await bcrypt.hash(password, 10, (err, result) => {
+        if (err) {
+            res.status(500).json({
+                message: "some error occured while storing credentials",
+                error: err
+            })
+        }
+        if (result) {
+            const id = req.params.id;
+            Student.updateOne({ _id: id }, { $set: { password: result } })
+                .exec()
+                .then(doc => {
+                    res.status(200).json({
+                        message: "successfully password updated",
+                        docs: doc
+                    })
+                })
+                .catch(err => {
+                    res.status(500).json({
+                        message: "internal server error",
+                        error: err
+                    })
+                });
+        }
+    })
+}
