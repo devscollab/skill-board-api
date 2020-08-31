@@ -12,8 +12,8 @@ router.get('/superuser/:id', forgotPasswordController.resetSuperuserPassword);
 
 router.post('/verify', forgotPasswordController.verifyOTP);
 
-router.post('/update/student/:id', Auth.forgotPasswordAuth, Student.updatepassword);
+router.post('/update/student/:id', Auth.forgotPasswordAuth, Student.updatePassword);
 
-router.post('/update/superuser/:id', Auth.forgotPasswordAuth, Superuser.updatepassword);
+router.post('/update/superuser/:id', Auth.forgotPasswordAuth, Superuser.updateSuperuserById);
 
 module.exports = router;

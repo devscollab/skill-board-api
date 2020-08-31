@@ -7,6 +7,7 @@ const Otp = require('../models/otp');
 
 const StudentController = require('../controllers/student');
 const SuperuserController = require('../controllers/superuser');
+const Email = require('../controllers/email');
 
 function getOTP() {
     return Math.floor(100000 + Math.random() * 900000);
@@ -35,6 +36,7 @@ exports.resetStudentPassword = async(req, res) => {
         userId: id
     });
 
+    Email.forgot_password(email, randomNumber);
     await otp.save()
         .then(doc => {
             res.status(200).json({
