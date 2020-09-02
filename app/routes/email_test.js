@@ -3,8 +3,7 @@ const router = express.Router();
 
 const emailTest = require("../controllers/email");
 
-email = "bhavanshofficial@gmail.com";
-// email = "adityadawadikar2000@gmail.com";
+// email = "Enter YOUR EMAIL";
 
 router.get("/approve", async (req, res) => {
   emailTest.successful_registration(email);
