@@ -14,7 +14,11 @@ const superuserRoutes = require('./app/routes/superuser')
 const unverifiedProfileRoutes = require('./app/routes/profileVerification')
 const forgotPasswordRoutes = require('./app/routes/forgotPassword');
 
+
 const auth = require('./app/controllers/auth') //this auth can be used to check if token is present or not
+
+// Only For Email Testing
+const emailTest = require('./app/routes/email_test');
 
 const app = express();
 
@@ -52,6 +56,7 @@ mongoose.connect(
         console.log("connected to database");
     })
 
+
 //routes
 app.use("/api/register", registerRoutes);
 app.use("/api/login", loginRoutes);
@@ -59,6 +64,9 @@ app.use("/api/student", studentRoutes);
 app.use("/api/superuser", superuserRoutes);
 app.use("/api/unverified", unverifiedProfileRoutes);
 app.use("/api/forgotpassword", forgotPasswordRoutes);
+
+// Email Test Route
+app.use("/api/emailtest", emailTest);
 
 //handling bad requests
 app.use((req, res, next) => {
@@ -75,6 +83,7 @@ app.use((error, req, res, next) => {
         }
     });
 });
+
 
 //clean otp collection each 6 hrs
 // const passwordReset = require('./app/controllers/forgotPassword');
