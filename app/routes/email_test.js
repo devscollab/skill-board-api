@@ -3,22 +3,22 @@ const router = express.Router();
 
 const emailTest = require("../controllers/email");
 
-// email = "Enter YOUR EMAIL";
+email = "Enter your email";
 
-router.get("/approve", async (req, res) => {
+router.get("/register", async (req, res) => {
   emailTest.successful_registration(email);
   res.status(200);
   res.end();
 });
 
-router.get("/reject", async (req, res) => {
+router.get("/approve", async (req, res) => {
   emailTest.application_approved(email);
   res.status(200);
   res.end();
 
 });
 
-router.get("/register", async (req, res) => {
+router.get("/reject", async (req, res) => {
   emailTest.application_rejected(email);
   res.status(200);
   res.end();

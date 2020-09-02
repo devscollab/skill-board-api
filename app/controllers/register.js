@@ -57,6 +57,7 @@ exports.registerStudent = (req, res) => {
             newProfile.save()
                 .then(doc => {
                     email.successful_registration(req.body.email);
+                    console.log(doc);
                     res.status(200).json({
                         message: "Student resgistration successful",
                         doc: doc,

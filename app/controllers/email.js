@@ -26,9 +26,9 @@ const application_rejected = (mailto) => {
 
 const forgot_password = (mailto, OTP) => {
   // OTP TEST LOGIC
-  if (!OTP) {
-    OTP = 3000;
-  }
+  // if (!OTP) {
+  //   OTP = 3000;
+  // }
   // OTP TEST LOGIC NOT FOR PRODUCTION
 
   let msg ="Your Request for password has been recieved,Here is Your OTP\n" + OTP;
