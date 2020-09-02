@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+  <!-- <!DOCTYPE html> -->
+  <!-- <html> -->
+
+  <head>
+    <title>Test Email Sample</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
+    <!--- CSS code (if any) --->
+
+    <style>
+
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        max-width: 600px;
+      }
+
+      .container img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+
+      .container h1 {
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 2.5rem;
+        margin-bottom: 5px;
+        color: black;
+      }
+
+      .container p {
+        font-size: 1.25rem;
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+        color: black;
+      }
+
+      .container .icons {
+        padding: 0.5rem;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+        padding: 0 auto;
+      }
+
+      .container .icons a {
+        margin:0 auto;
+      }
+      .container .icons a img {
+        width: 2.5rem;
+        padding: 0 1.2rem;
+        margin:0;
+      }
+
+      a {
+        text-justify: center;
+      }
+
+      a:visited {
+        color: black;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="">
+        <h1>WELCOME TO SKILLBOARD</h1>
+        <img
+          src="https://raw.githubusercontent.com/devscollab/skill-board/master/assets/images/logo.png"
+          alt="SkillBoard-Logo"
+        />
+        <p>
+          Skill Board is a place for the students to showcase their skills &
+          experience and to show the availability & interest in receiving new
+          opportunities to work on new projects and internships. Faculties and
+          recruiters can go through this skill board to view the projects of
+          students with the required skills and can contact the students
+          directly for discussing any particular opportunity.
+        </p>
+        <p><%= message %></p>
+        <p>Join Us Here</p>
+        <div class="icons">
+          <a href="https://twitter.com/devs_collab" target="_blank">
+            <img src="https://i.imgur.com/jelpZWd.png" alt="" />
+          </a>
+          <a href="https://instagram.com/devscollab" target="_blank">
+            <img src="https://i.imgur.com/qx8fDhS.png" alt="" />
+          </a>
+          <a href="https://github.com/devscollab" target="_blank">
+            <img src="https://i.imgur.com/QS5Qbbh.png" alt="" />
+          </a>
+          <a href="mailto: devscollab@gmail.com">
+            <img src="https://i.imgur.com/hyqp49e.png" alt="" />
+          </a>
+
+          <a href="https://discord.gg/JfKmqUh" target="_blank">
+            <img src="https://i.imgur.com/HpUvGLO.png" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
