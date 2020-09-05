@@ -18,7 +18,7 @@ const studentSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-        Personal: {
+        personal: {
             name: {
                 type: String,
                 required: true,
@@ -45,7 +45,7 @@ const studentSchema = new mongoose.Schema({
                 required: true,
             },
         },
-        Social: {
+        social: {
             phone: {
                 type: Number,
                 match: /^[0-9]{10}$/,
@@ -75,7 +75,7 @@ const studentSchema = new mongoose.Schema({
             },
         },
         // All required
-        Skills: {
+        skills: {
             skill: [{
                 type: String,
                 required: true,
@@ -85,7 +85,11 @@ const studentSchema = new mongoose.Schema({
                 match: /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi,
                 required: true,
             }, ],
-            topskill: {
+            primaryskill: {
+                type: String,
+                required: true,
+            },
+            secondaryskill: {
                 type: String,
                 required: true,
             },
@@ -94,7 +98,11 @@ const studentSchema = new mongoose.Schema({
                 required: true,
             },
         },
-        Optionals: {
+        rating: {
+            type: Number,
+            required: true
+        },
+        optionals: {
             introduction: {
                 type: String,
             },
@@ -114,7 +122,7 @@ const studentSchema = new mongoose.Schema({
             },
             languages_known: [{ type: String }],
         },
-        MetaData: {
+        metaData: {
             hasAdminAccess: {
                 type: Boolean,
                 required: true,

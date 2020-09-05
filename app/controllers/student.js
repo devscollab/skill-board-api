@@ -4,7 +4,7 @@ const { compareSync } = require('bcrypt');
 const bcrypt = require('bcrypt');
 
 exports.getStudentProfileById = (req, res) => {
-    Student.find({ _id: req.params.id })
+    Student.findOne({ _id: req.params.id })
         .then(doc => {
             res.status(200).json({
                 message: "success",
@@ -21,7 +21,9 @@ exports.getStudentProfileById = (req, res) => {
 
 exports.getAllStudentProfiles = (req, res) => {
     Student.find()
+        .select('email personal social rating skills metaData.github_metadata_object')
         .then(docs => {
+            console.log(docs);
             res.status(200).json({
                 message: "success",
                 size: docs.length,
