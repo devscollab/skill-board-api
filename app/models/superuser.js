@@ -16,13 +16,13 @@ const superUserSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-        Personal: {
+        personal: {
             name: {
                 type: String,
                 required: true,
             },
         },
-        Social: {
+        social: {
             phone: {
                 type: Number,
                 match: /^[0-9]{10}$/,
@@ -39,7 +39,7 @@ const superUserSchema = new mongoose.Schema({
                 match: /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi,
             },
         },
-        Optionals: {
+        optionals: {
             introduction: {
                 type: String,
             },
@@ -59,7 +59,7 @@ const superUserSchema = new mongoose.Schema({
             },
             languages_known: [{ type: String }],
         },
-        MetaData: {
+        metaData: {
             hasAdminAccess: {
                 type: Boolean,
                 required: true,
