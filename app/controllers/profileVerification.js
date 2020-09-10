@@ -2,6 +2,7 @@ const UnverifiedProfiles = require('../models/unverifiedProfiles');
 const Student = require('../models/student');
 
 const email = require('../controllers/email');
+const unverifiedProfiles = require('../models/unverifiedProfiles');
 
 exports.getUnverifiedProfiles = (req, res) => {
     UnverifiedProfiles.find()
@@ -99,4 +100,43 @@ exports.reject = (req, res) => {
                 error: err
             })
         })
+}
+
+exports.deleteUnverifiedUserById = (req, res) => {
+    unverifiedProfiles.findByIdAndDelete({ _id: req.params.id })
+        .then(doc => {
+            res.status(200).json({
+                message: "successfully deleted",
+                doc: doc
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
+}
+
+exports.updateUnverifiedUserById = (req, res) => {
+    const id = req.params.id;
+    const updateOperations = req.body;
+    for (const operations in updateOperations) {
+        updateOperations[operations.propName] = operations.value;
+    }
+
+    UnverifiedProfiles.update({ _id: id }, { $set: updateOperations })
+        .exec()
+        .then(doc => {
+            res.status(200).json({
+                message: "successfully updated",
+                docs: doc
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        });
 }

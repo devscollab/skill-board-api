@@ -10,4 +10,8 @@ router.post('/approve/:id', auth.superuserAuth, verificationController.approve);
 
 router.post('/reject/:id', auth.superuserAuth, verificationController.reject);
 
+router.patch('/update/:id', auth.superuserAuth, verificationController.updateUnverifiedUserById);
+
+router.delete('/delete/:id', auth.superuserAuth, verificationController.deleteUnverifiedUserById);
+
 module.exports = router
