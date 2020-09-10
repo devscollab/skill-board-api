@@ -2,6 +2,7 @@ const UnverifiedProfiles = require('../models/unverifiedProfiles');
 const Student = require('../models/student');
 
 const email = require('../controllers/email');
+const unverifiedProfiles = require('../models/unverifiedProfiles');
 
 exports.getUnverifiedProfiles = (req, res) => {
     UnverifiedProfiles.find()
@@ -27,38 +28,40 @@ exports.approve = (req, res) => {
                 _id: doc[0]._id,
                 email: doc[0].email,
                 password: doc[0].password,
-                Personal: {
-                    name: doc[0].Personal.name,
-                    college: doc[0].Personal.college,
-                    department: doc[0].Personal.department,
-                    year: doc[0].Personal.year,
-                    division: doc[0].Personal.division,
-                    rollno: doc[0].Personal.rollno,
+                personal: {
+                    name: doc[0].personal.name,
+                    college: doc[0].personal.college,
+                    department: doc[0].personal.department,
+                    year: doc[0].personal.year,
+                    division: doc[0].personal.division,
+                    rollno: doc[0].personal.rollno,
                 },
-                Social: {
-                    phone: doc[0].Social.phone,
-                    linkedin: doc[0].Social.linkedin,
-                    github: doc[0].Social.github,
-                    personalwebsite: doc[0].Social.personalwebsite,
-                    resume: doc[0].Social.resume,
-                    iswhatsaap: doc[0].Social.iswhatsaap,
+                social: {
+                    phone: doc[0].social.phone,
+                    linkedin: doc[0].social.linkedin,
+                    github: doc[0].social.github,
+                    personalwebsite: doc[0].social.personalwebsite,
+                    resume: doc[0].social.resume,
+                    iswhatsaap: doc[0].social.iswhatsaap,
                 },
-                Skills: {
-                    skill: doc[0].Skills.skill,
-                    projectsforskills: doc[0].Skills.projectsforskills,
-                    topskill: doc[0].Skills.topskill,
-                    cgpa: doc[0].Skills.cgpa,
+                skills: {
+                    skill: doc[0].skills.skill,
+                    projectsforskills: doc[0].skills.projectsforskills,
+                    primaryskill: doc[0].skills.primaryskill,
+                    secondaryskill: doc[0].skills.secondaryskill,
+                    cgpa: doc[0].skills.cgpa,
                 },
-                Optionals: {
-                    introduction: doc[0].Optionals.introduction,
-                    gender: doc[0].Optionals.gender,
-                    age: doc[0].Optionals.age,
-                    mother_tongue: doc[0].Optionals.mother_tongue,
-                    languages_known: doc[0].Optionals.languages_known,
+                rating: doc[0].rating,
+                optionals: {
+                    introduction: doc[0].optionals.introduction,
+                    gender: doc[0].optionals.gender,
+                    age: doc[0].optionals.age,
+                    mother_tongue: doc[0].optionals.mother_tongue,
+                    languages_known: doc[0].optionals.languages_known,
                 },
-                MetaData: {
-                    hasAdminAccess: doc[0].MetaData.hasAdminAccess,
-                    github_metadata_object: doc[0].MetaData.github_metadata_object,
+                metaData: {
+                    hasAdminAccess: doc[0].metaData.hasAdminAccess,
+                    github_metadata_object: doc[0].metaData.github_metadata_object,
                 },
             });
             student.save()
@@ -97,4 +100,43 @@ exports.reject = (req, res) => {
                 error: err
             })
         })
+}
+
+exports.deleteUnverifiedUserById = (req, res) => {
+    unverifiedProfiles.findByIdAndDelete({ _id: req.params.id })
+        .then(doc => {
+            res.status(200).json({
+                message: "successfully deleted",
+                doc: doc
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
+}
+
+exports.updateUnverifiedUserById = (req, res) => {
+    const id = req.params.id;
+    const updateOperations = req.body;
+    for (const operations in updateOperations) {
+        updateOperations[operations.propName] = operations.value;
+    }
+
+    UnverifiedProfiles.update({ _id: id }, { $set: updateOperations })
+        .exec()
+        .then(doc => {
+            res.status(200).json({
+                message: "successfully updated",
+                docs: doc
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        });
 }
