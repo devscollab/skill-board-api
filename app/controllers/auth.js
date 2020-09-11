@@ -93,7 +93,7 @@ exports.forgotPasswordAuth = (req, res, next) => {
                     })
                 } else {
                     const decoded = jwt.decode(token);
-                    if ((decoded.role === "student" || decoded.role === "superuser") && decoded.task === "forgot password") {
+                    if ((decoded.role === "student" || decoded.role === "superuser" || decoded.role === "unverifiedProfile") && decoded.task === "forgot password") {
                         next()
                     } else {
                         res.status(401).json({
