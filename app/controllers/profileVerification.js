@@ -1,8 +1,9 @@
+const bcrypt = require('bcrypt');
+
 const UnverifiedProfiles = require('../models/unverifiedProfiles');
 const Student = require('../models/student');
 
 const email = require('../controllers/email');
-const unverifiedProfiles = require('../models/unverifiedProfiles');
 
 exports.getUnverifiedProfiles = (req, res) => {
     UnverifiedProfiles.find()
@@ -11,6 +12,22 @@ exports.getUnverifiedProfiles = (req, res) => {
                 message: "success",
                 size: docs.length,
                 docs: docs
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
+}
+
+exports.getUnverifiedProfilesById = (req, res) => {
+    UnverifiedProfiles.findOne({ _id: req.params.id })
+        .then(doc => {
+            res.status(200).json({
+                message: "success",
+                docs: doc
             })
         })
         .catch(err => {
@@ -139,4 +156,33 @@ exports.updateUnverifiedUserById = (req, res) => {
                 error: err
             })
         });
+}
+
+exports.updatePassword = async(req, res) => {
+    const password = req.body.password;
+    await bcrypt.hash(password, 10, (err, result) => {
+        if (err) {
+            res.status(500).json({
+                message: "some error occured while storing credentials",
+                error: err
+            })
+        }
+        if (result) {
+            const id = req.params.id;
+            UnverifiedProfiles.updateOne({ _id: id }, { $set: { password: result } })
+                .exec()
+                .then(doc => {
+                    res.status(200).json({
+                        message: "successfully password updated",
+                        docs: doc
+                    })
+                })
+                .catch(err => {
+                    res.status(500).json({
+                        message: "internal server error",
+                        error: err
+                    })
+                });
+        }
+    })
 }
