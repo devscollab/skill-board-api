@@ -1,45 +1,49 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const dotenv = require("dotenv");
 const ejs = require("ejs");
-const path = require('path')
+const path = require("path");
 const fs = require("fs");
 
-const loginRoutes = require('./app/routes/login')
-const studentRoutes = require('./app/routes/student')
-const registerRoutes = require('./app/routes/register')
-const superuserRoutes = require('./app/routes/superuser')
-const unverifiedProfileRoutes = require('./app/routes/profileVerification')
-const forgotPasswordRoutes = require('./app/routes/forgotPassword');
+const loginRoutes = require("./app/routes/login");
+const studentRoutes = require("./app/routes/student");
+const registerRoutes = require("./app/routes/register");
+const superuserRoutes = require("./app/routes/superuser");
+const unverifiedProfileRoutes = require("./app/routes/profileVerification");
+const forgotPasswordRoutes = require("./app/routes/forgotPassword");
 const broadcast = require('./app/routes/broadcast');
 
-
-const auth = require('./app/controllers/auth') //this auth can be used to check if token is present or not
+const auth = require("./app/controllers/auth"); //this auth can be used to check if token is present or not
 
 // Only For Email Testing
-const emailTest = require('./app/routes/email_test');
+// const emailTest = require('./app/routes/email_test');
 
 const app = express();
+
+const port = process.env.PORT || 3000;
 
 dotenv.config();
 
 //middleware
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers',
-        "Origin, X-Requested-with, Control-Type, Accept, Authorization"
-    );
-    if (req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'PUT, POST, DELETE, GET');
-        return res.status(200).json({});
-    }
-    next();
-});
-app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-with, Control-Type, Accept, Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({});
+  }
+  next();
+});
 
 // In case Atlas Doesnt Work -> uncomment it
 // mongoose.connect('mongodb://localhost/Skill',
@@ -58,6 +62,10 @@ mongoose.connect(
     })
 
 
+// Setting render method to ejs
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "app/views"));
+
 //routes
 app.use("/api/register", registerRoutes);
 app.use("/api/login", loginRoutes);
@@ -68,7 +76,13 @@ app.use("/api/forgotpassword", forgotPasswordRoutes);
 app.use("/api/broadcast", broadcast);
 
 // Email Test Route
-app.use("/api/emailtest", emailTest);
+// app.use("/api/emailtest", emailTest);
+
+// Docs 
+app.get("/", (req, res) => {
+    res.render("docs");
+  });
+  
 
 //handling bad requests
 app.use((req, res, next) => {
