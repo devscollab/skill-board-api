@@ -59,7 +59,7 @@ exports.approve = (req, res) => {
                     github: doc[0].social.github,
                     personalwebsite: doc[0].social.personalwebsite,
                     resume: doc[0].social.resume,
-                    iswhatsaap: doc[0].social.iswhatsaap,
+                    iswhatsapp: doc[0].social.iswhatsapp,
                 },
                 skills: {
                     skill: doc[0].skills.skill,
