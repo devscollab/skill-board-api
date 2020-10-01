@@ -44,7 +44,7 @@ exports.registerStudent = async(req, res) => {
                                 github: req.body.social.github,
                                 personalwebsite: req.body.social.personalwebsite,
                                 resume: req.body.social.resume,
-                                iswhatsaap: req.body.social.iswhatsaap,
+                                iswhatsapp: req.body.social.iswhatsapp,
                             },
                             skills: {
                                 skill: req.body.skills.skill,
