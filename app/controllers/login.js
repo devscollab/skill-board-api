@@ -25,7 +25,8 @@ exports.loginStudent = async(req, res) => {
                                 })
                             res.status(200).json({
                                 message: "login successful",
-                                token: token
+                                token: token,
+                                role: "unverified"
                             })
                         } else {
                             res.status(401).json({
@@ -52,7 +53,8 @@ exports.loginStudent = async(req, res) => {
                                             })
                                         res.status(200).json({
                                             message: "login successful",
-                                            token: token
+                                            token: token,
+                                            role: "student"
                                         })
                                     } else {
                                         res.status(401).json({
@@ -98,7 +100,8 @@ exports.loginSuperuser = (req, res) => {
                                 })
                             res.status(200).json({
                                 message: "login successful",
-                                token: token
+                                token: token,
+                                role: "superuser"
                             })
                         } else {
                             res.status(401).json({
