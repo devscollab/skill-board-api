@@ -5,25 +5,25 @@
 
 # Index
 
-* ## Prerequisites- page 2
+*  ## Prerequisites
 
-* ## Login process - page 5
+* ## Login process
 
-* ## Registration process - page 7
+* ## Registration process
 
-* ## Fetching Data (access to student user and superuser) - page 12
+* ## Fetching Data (access to student user and superuser)
 
-* ## Update Data (access to student user and superuser) - page 15
+* ## Update Data (access to student user and superuser)
 
-* ## Delete Data (access to student user and superuser) - page 18
+* ## Delete Data (access to student user and superuser)
 
-* ## Verifying Profiles(access restricted to superuser) - page 19
+* ## Verifying Profiles(access restricted to superuser)
 
-* ## Broadcast emails - page 20
+* ## Broadcast emails
 
-* ##  Forgot Password process - page 23
+* ##  Forgot Password process
 
-
+* ##  Promotion to SuperUser
 
 ### Note: development server is deployed on Heroku at [https://skboard.herokuapp.com](https://skboard.herokuapp.com/)
 
@@ -139,7 +139,6 @@ There can be multiple reasons for the auth to fail
 
 # 1. Login process
 
-## a) Student Login
 
 ```step1. Send the request to the following path. On success, the server will send a token. redirect to the dashboard.```
 
@@ -148,7 +147,7 @@ There can be multiple reasons for the auth to fail
 ```step3. Use it with every request to the server. The missing token will lead to denial of service from the server-side.```
 
 ```
-URL: http://localhost:3000/api/login/student
+URL: http://localhost:3000/api/login/
 TYPE: POST
 HEADERS: NULL
 BODY: {
@@ -178,50 +177,8 @@ iii. Password doesn't match
 
 ```
 
-
-## b) Superuser Login
-
-```step1. Send the request to the following path. On success, server will send a token. redirect to the dashboard.```
-
-```step2. save the token from the response in browser LocalStorage.```
-
-```step3. Use it with every request to the server. The missing token will lead to denial of service from the server-side.```
-
-```
-URL: http://localhost:3000/api/login/superuser
-TYPE: POST
-HEADERS: NULL
-BODY: {
-	    "email":"geekdev127001@gmail.com",
-	    "password":"123"
-	  }
-
-```
-
-**RESPONSE:**
-
-```
-i. Success
-    {
-	    "message": "login successful",
-	    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlZWtkZXYxMjcwMDFAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE1OTg5NzExOTEsImV4cCI6MTU5OTAwNzE5MX0.KFIkNsrRENKPiWKz_ZLIcTBUjl0Th-XTgeNoytRJKGQ"
-	}
-
-ii. Email not found
-	{
-	    "message": "user not found"
-	}
-
-iii. Password doesn't match
-	{
-	    "message": "login failed",
-	    "error": "password doesn't match"
-	}
-```
 
 # 2. Registration 
-
-## a) Student Registration
 
 ```step1. Send the request to the following path.```
 
@@ -231,15 +188,17 @@ iii. Password doesn't match
 
 ```MetaData must be required from the Github API.```
 
+```Every Registeration will be unverified profile which after verification can be assigned role of Student or Superuser by Superuser after promoting```
+
 ```
-URL: http://localhost:3000/api/register/student
+URL: http://localhost:3000/api/register
 TYPE: POST
 HEADERS: NULL
 BODY:{
-    "email": "testuser300@gmail.com",
+    "email": "testUser16@gmail.com",
     "password": "123",
     "personal": {
-        "name": "ddfbvdfgb",
+        "name": "Suyash",
         "college": "PCCOE",
         "department": "COMP",
         "year": "TE",
@@ -257,8 +216,8 @@ BODY:{
     "skills": {
       "skill": ["Js","Py","Node"],
       "projectsforskills": ["https://www.linkedin.com/in/","https://www.linkedin.com/in/","https://www.linkedin.com/in/"],
-      "primaryskill":"Node",
-      "secondaryskill":"Py",
+      "primaryskill": "Nodejs",
+      "secondaryskill": "Angular",
       "cgpa": 9.82
     },
     "rating":4.5,
@@ -270,9 +229,11 @@ BODY:{
         "languages_known": [
             "Hindi",
             "English"
-        ]
+        ],
+        "pronoun":"he/him"
     },
     "metaData": {
+        "hasAdminAccess": false,
         "github_metadata_object": {
             "login": "aditya",
             "id": 45139041,
@@ -317,91 +278,6 @@ BODY:{
 ```
 i. Success
 	
-ii. Failure:
-	{
-	    "message": "some error occurred while storing credentials",
-	    "error": {}
-	}
-
-```
-
-## b) Superuser Registration
-
-```step1. Send the request to the following path.```
-
-```step2. After successful registration, an acknowledgment auto generated email will be sent to the user.```
-
-```Note: The request body should follow the same schema strictly. Typo/Case(small/capital) cannot be excused. These fields are 1:1 mapped with data on the server-side, missing fields, or mistyped filed names will raise unwanted errors.```
-
-```MetaData must be required from the Github api.```
-
-```
-URL: http://localhost:3000/api/register/student
-TYPE: POST
-HEADERS: NULL
-BODY: {
-        "email": "testSupe11@gmail.com",
-        "password": "123",
-        "personal": {
-          "name": "Bhavansh"
-        },
-        "social": {
-          "phone": "8806698766",
-          "linkedin": "https://www.linkedin.com/in/bhavansh-gupta-01bbb817a/",
-          "github": "https://github.com/bhavansh"
-        },
-        "optionals": {
-          "introduction": "Hello",
-          "gender": "Male",
-          "age": "20",
-          "mother_tongue": "Hindi",
-          "languages_known": ["Marathi","English"]
-        },
-        "metaData": {
-          "github_metadata_object": {
-                "login": "bhavansh",
-                "id": 45139041,
-                "node_id": "MDQ6VXNlcjQ1MTM5MDQx",
-                "avatar_url": "https://avatars3.githubusercontent.com/u/45139041?v=4",
-                "gravatar_id": "",
-                "url": "https://api.github.com/users/bhavansh",
-                "html_url": "https://github.com/bhavansh",
-                "followers_url": "https://api.github.com/users/bhavansh/followers",
-                "following_url": "https://api.github.com/users/bhavansh/following{/other_user}",
-                "gists_url": "https://api.github.com/users/bhavansh/gists{/gist_id}",
-                "starred_url": "https://api.github.com/users/bhavansh/starred{/owner}{/repo}",
-                "subscriptions_url": "https://api.github.com/users/bhavansh/subscriptions",
-                "organizations_url": "https://api.github.com/users/bhavansh/orgs",
-                "repos_url": "https://api.github.com/users/bhavansh/repos",
-                "events_url": "https://api.github.com/users/bhavansh/events{/privacy}",
-                "received_events_url": "https://api.github.com/users/bhavansh/received_events",
-                "type": "User",
-                "site_admin": false,
-                "name": "Bhavansh Gupta",
-                "company": null,
-                "blog": "",
-                "location": "Pune",
-                "email": null,
-                "hireable": null,
-                "bio": "Student of Computer Engineering at Pimpri Chinchwad College of Engineering.\r\nJust Starting",
-                "twitter_username": "bhavanshgupta",
-                "public_repos": 20,
-                "public_gists": 0,
-                "followers": 28,
-                "following": 65,
-                "created_at": "2018-11-18T08:07:57Z",
-                "updated_at": "2020-08-25T15:04:57Z"
-            }
-        }
-      }
-
-```
-
-**RESPONSE:**
-
-```
-i. Success
-		
 ii. Failure:
 	{
 	    "message": "some error occurred while storing credentials",
@@ -520,6 +396,33 @@ URL: http://localhost:3000/api/student/:id
 		            		“error”: {}
 				}
 ```
+
+```ii. Get unverified Student profiles info by its ID```
+
+```
+URL: http://localhost:3000/api/unverified/:id
+	TYPE: GET
+	HEADERS: 
+		{
+			Authorization: Bearer <SuperUser token goes here>
+		}
+	BODY: NULL
+	RESPONSE:
+		i.Success:
+	{
+			    "message": "success",
+			    "doc": {//student data here}
+			}
+		ii. Failure:
+			a. Auth failure
+			b. Server error
+				{
+					“message”: "internal server error",
+		            		“error”: {}
+				}
+
+```
+
 ## c) Superuser Data 
 
 ```i. Get all superusers```
@@ -528,7 +431,7 @@ URL: http://localhost:3000/api/student/:id
 	TYPE: GET
 	HEADERS: 
 		{
-			Authorization: Bearer <student token goes here>
+			Authorization: Bearer <superuser token goes here>
 		}
 	BODY: NULL
 	RESPONSE: 
@@ -550,11 +453,11 @@ URL: http://localhost:3000/api/student/:id
 
 ```ii. Get Superuser info by its ID```
 ```
-	URL: http://localhost:3000/api/student/:id
+	URL: http://localhost:3000/api/superuser/:id
 	TYPE: GET
 	HEADERS: 
 		{
-			Authorization: Bearer <student token goes here>
+			Authorization: Bearer <superuser token goes here>
 		}
 	BODY: NULL
 	RESPONSE:
@@ -937,6 +840,13 @@ HEADERS: NULL
 			}
 ```
 
+**Note : Routes to Get Otp for SuperUser and Unverified Profiles are as follows: **
+```
+URL: http://localhost:3000/api/forgotpassword/unverified/:id
+URL: http://localhost:3000/api/forgotpassword/superuser/:id
+```
+
+
 ## b). verify OTP
 
 ```
@@ -999,4 +909,51 @@ URL: http://localhost:3000/api/forgotpassword/update/superuser/:id
 		            		error: {}
 				}
 
+```
+
+## e). Update Unverified Profile password
+
+```
+URL: http://localhost:3000/api/forgotpassword/update/unverified/:id
+	TYPE: POST
+	HEADERS: 
+			{
+				Authorization: Bearer <forgot password token goes here>
+			}
+	BODY: {
+		  	"password":"12345"
+		  }
+	RESPONSE: 
+		i. Success
+		ii. Failure:
+			a. Auth failure
+			b. {
+					message: "internal server error",
+		            		error: {}
+				}
+
+```
+
+# 9. Promotion to SuperUser
+```
+URL: http://localhost:3000/api/superuser/promote:id
+	TYPE: POST
+	HEADERS: 
+		{
+			Authorization: Bearer <superuser token goes here>
+		} 
+	BODY: NULL
+	RESPONSE: 
+		i.Success:
+			{
+			    "message": "success",
+			    "doc": {//student data here}
+			}
+		ii. Failure:
+			a. Auth failure
+			b. Server error
+				{
+					“message”: "internal server error",
+		            		“error”: {}
+				}
 ```
