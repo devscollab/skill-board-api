@@ -7,31 +7,34 @@
 <h1 class="code-line" data-line-start=5 data-line-end=6><a id="Index_5"></a>Index</h1>
 <ul>
 <li class="has-line-data" data-line-start="7" data-line-end="9">
-<h2 class="code-line" data-line-start=7 data-line-end=8><a id="Prerequisites_page_2_7"></a>Prerequisites- page 2</h2>
+<h2 class="code-line" data-line-start=7 data-line-end=8><a id="Prerequisites_7"></a>Prerequisites</h2>
 </li>
 <li class="has-line-data" data-line-start="9" data-line-end="11">
-<h2 class="code-line" data-line-start=9 data-line-end=10><a id="Login_process__page_5_9"></a>Login process - page 5</h2>
+<h2 class="code-line" data-line-start=9 data-line-end=10><a id="Login_process_9"></a>Login process</h2>
 </li>
 <li class="has-line-data" data-line-start="11" data-line-end="13">
-<h2 class="code-line" data-line-start=11 data-line-end=12><a id="Registration_process__page_7_11"></a>Registration process - page 7</h2>
+<h2 class="code-line" data-line-start=11 data-line-end=12><a id="Registration_process_11"></a>Registration process</h2>
 </li>
 <li class="has-line-data" data-line-start="13" data-line-end="15">
-<h2 class="code-line" data-line-start=13 data-line-end=14><a id="Fetching_Data_access_to_student_user_and_superuser__page_12_13"></a>Fetching Data (access to student user and superuser) - page 12</h2>
+<h2 class="code-line" data-line-start=13 data-line-end=14><a id="Fetching_Data_access_to_student_user_and_superuser_13"></a>Fetching Data (access to student user and superuser)</h2>
 </li>
 <li class="has-line-data" data-line-start="15" data-line-end="17">
-<h2 class="code-line" data-line-start=15 data-line-end=16><a id="Update_Data_access_to_student_user_and_superuser__page_15_15"></a>Update Data (access to student user and superuser) - page 15</h2>
+<h2 class="code-line" data-line-start=15 data-line-end=16><a id="Update_Data_access_to_student_user_and_superuser_15"></a>Update Data (access to student user and superuser)</h2>
 </li>
 <li class="has-line-data" data-line-start="17" data-line-end="19">
-<h2 class="code-line" data-line-start=17 data-line-end=18><a id="Delete_Data_access_to_student_user_and_superuser__page_18_17"></a>Delete Data (access to student user and superuser) - page 18</h2>
+<h2 class="code-line" data-line-start=17 data-line-end=18><a id="Delete_Data_access_to_student_user_and_superuser_17"></a>Delete Data (access to student user and superuser)</h2>
 </li>
 <li class="has-line-data" data-line-start="19" data-line-end="21">
-<h2 class="code-line" data-line-start=19 data-line-end=20><a id="Verifying_Profilesaccess_restricted_to_superuser__page_19_19"></a>Verifying Profiles(access restricted to superuser) - page 19</h2>
+<h2 class="code-line" data-line-start=19 data-line-end=20><a id="Verifying_Profilesaccess_restricted_to_superuser_19"></a>Verifying Profiles(access restricted to superuser)</h2>
 </li>
 <li class="has-line-data" data-line-start="21" data-line-end="23">
-<h2 class="code-line" data-line-start=21 data-line-end=22><a id="Broadcast_emails__page_20_21"></a>Broadcast emails - page 20</h2>
+<h2 class="code-line" data-line-start=21 data-line-end=22><a id="Broadcast_emails_21"></a>Broadcast emails</h2>
 </li>
-<li class="has-line-data" data-line-start="23" data-line-end="24">
-<h2 class="code-line" data-line-start=23 data-line-end=24><a id="Forgot_Password_process__page_23_23"></a>Forgot Password process - page 23</h2>
+<li class="has-line-data" data-line-start="23" data-line-end="25">
+<h2 class="code-line" data-line-start=23 data-line-end=24><a id="Forgot_Password_process_23"></a>Forgot Password process</h2>
+</li>
+<li class="has-line-data" data-line-start="25" data-line-end="27">
+<h2 class="code-line" data-line-start=25 data-line-end=26><a id="Promotion_to_SuperUser_25"></a>Promotion to SuperUser</h2>
 </li>
 </ul>
 <h3 class="code-line" data-line-start=27 data-line-end=28><a id="Note_development_server_is_deployed_on_Heroku_at_httpsskboardherokuappcomhttpsskboardherokuappcom_27"></a>Note: development server is deployed on Heroku at <a href="https://skboard.herokuapp.com/">https://skboard.herokuapp.com</a></h3>
@@ -128,20 +131,19 @@ In above example the **page=3** will denote that the user has scrolled the page 
 }
 </code></pre>
 <h1 class="code-line" data-line-start=139 data-line-end=140><a id="1_Login_process_139"></a>1. Login process</h1>
-<h2 class="code-line" data-line-start=141 data-line-end=142><a id="a_Student_Login_141"></a>a) Student Login</h2>
-<p class="has-line-data" data-line-start="143" data-line-end="144"><code>step1. Send the request to the following path. On success, the server will send a token. redirect to the dashboard.</code></p>
-<p class="has-line-data" data-line-start="145" data-line-end="146"><code>step2. save the token from the response in browser LocalStorage.</code></p>
-<p class="has-line-data" data-line-start="147" data-line-end="148"><code>step3. Use it with every request to the server. The missing token will lead to denial of service from the server-side.</code></p>
-<pre><code class="has-line-data" data-line-start="150" data-line-end="158">URL: http://localhost:3000/api/login/student
+<p class="has-line-data" data-line-start="142" data-line-end="143"><code>step1. Send the request to the following path. On success, the server will send a token. redirect to the dashboard.</code></p>
+<p class="has-line-data" data-line-start="144" data-line-end="145"><code>step2. save the token from the response in browser LocalStorage.</code></p>
+<p class="has-line-data" data-line-start="146" data-line-end="147"><code>step3. Use it with every request to the server. The missing token will lead to denial of service from the server-side.</code></p>
+<pre><code class="has-line-data" data-line-start="149" data-line-end="157">URL: http://localhost:3000/api/login/
 TYPE: POST
 HEADERS: NULL
 BODY: {
-        &quot;email&quot;:&quot;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="482f2d2d232c2d3e797a7f787879082f25292124662b2725">[email&#160;protected]</a>&quot;,
+        &quot;email&quot;:&quot;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bddad8d8d6d9d8cb8c8f8a8d8d8cfddad0dcd4d193ded2d0">[email&#160;protected]</a>&quot;,
         &quot;password&quot;:&quot;123&quot;
       }
 </code></pre>
-<p class="has-line-data" data-line-start="159" data-line-end="160"><strong>RESPONSE:</strong></p>
-<pre><code class="has-line-data" data-line-start="161" data-line-end="179">i. Success
+<p class="has-line-data" data-line-start="158" data-line-end="159"><strong>RESPONSE:</strong></p>
+<pre><code class="has-line-data" data-line-start="160" data-line-end="178">i. Success
     {
         &quot;message&quot;: &quot;login successful&quot;,
         &quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlZWtkZXYxMjcwMDFAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE1OTg5NzExOTEsImV4cCI6MTU5OTAwNzE5MX0.KFIkNsrRENKPiWKz_ZLIcTBUjl0Th-XTgeNoytRJKGQ&quot;
@@ -159,51 +161,20 @@ iii. Password doesn't match
     }
 
 </code></pre>
-<h2 class="code-line" data-line-start=181 data-line-end=182><a id="b_Superuser_Login_181"></a>b) Superuser Login</h2>
-<p class="has-line-data" data-line-start="183" data-line-end="184"><code>step1. Send the request to the following path. On success, server will send a token. redirect to the dashboard.</code></p>
-<p class="has-line-data" data-line-start="185" data-line-end="186"><code>step2. save the token from the response in browser LocalStorage.</code></p>
-<p class="has-line-data" data-line-start="187" data-line-end="188"><code>step3. Use it with every request to the server. The missing token will lead to denial of service from the server-side.</code></p>
-<pre><code class="has-line-data" data-line-start="190" data-line-end="199">URL: http://localhost:3000/api/login/superuser
-TYPE: POST
-HEADERS: NULL
-BODY: {
-        &quot;email&quot;:&quot;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a8cfcdcdc3cccdde999a9f989899e8cfc5c9c1c486cbc7c5">[email&#160;protected]</a>&quot;,
-        &quot;password&quot;:&quot;123&quot;
-      }
-
-</code></pre>
-<p class="has-line-data" data-line-start="200" data-line-end="201"><strong>RESPONSE:</strong></p>
-<pre><code class="has-line-data" data-line-start="203" data-line-end="220">i. Success
-    {
-        &quot;message&quot;: &quot;login successful&quot;,
-        &quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlZWtkZXYxMjcwMDFAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE1OTg5NzExOTEsImV4cCI6MTU5OTAwNzE5MX0.KFIkNsrRENKPiWKz_ZLIcTBUjl0Th-XTgeNoytRJKGQ&quot;
-    }
-
-ii. Email not found
-    {
-        &quot;message&quot;: &quot;user not found&quot;
-    }
-
-iii. Password doesn't match
-    {
-        &quot;message&quot;: &quot;login failed&quot;,
-        &quot;error&quot;: &quot;password doesn't match&quot;
-    }
-</code></pre>
-<h1 class="code-line" data-line-start=221 data-line-end=222><a id="2_Registration_221"></a>2. Registration</h1>
-<h2 class="code-line" data-line-start=223 data-line-end=224><a id="a_Student_Registration_223"></a>a) Student Registration</h2>
-<p class="has-line-data" data-line-start="225" data-line-end="226"><code>step1. Send the request to the following path.</code></p>
-<p class="has-line-data" data-line-start="227" data-line-end="228"><code>step2. After successful registration, an acknowledgment auto generated email will be sent to the user.</code></p>
-<p class="has-line-data" data-line-start="229" data-line-end="230"><code>Note: The request body should follow the same schema strictly. Typo/Case(small/capital) cannot be excused. These fields are 1:1 mapped with data on the server-side, missing fields, or mistyped field names will raise unwanted errors.</code></p>
-<p class="has-line-data" data-line-start="231" data-line-end="232"><code>MetaData must be required from the Github API.</code></p>
-<pre><code class="has-line-data" data-line-start="234" data-line-end="313">URL: http://localhost:3000/api/register/student
+<h1 class="code-line" data-line-start=180 data-line-end=181><a id="2_Registration_180"></a>2. Registration</h1>
+<p class="has-line-data" data-line-start="182" data-line-end="183"><code>step1. Send the request to the following path.</code></p>
+<p class="has-line-data" data-line-start="184" data-line-end="185"><code>step2. After successful registration, an acknowledgment auto generated email will be sent to the user.</code></p>
+<p class="has-line-data" data-line-start="186" data-line-end="187"><code>Note: The request body should follow the same schema strictly. Typo/Case(small/capital) cannot be excused. These fields are 1:1 mapped with data on the server-side, missing fields, or mistyped field names will raise unwanted errors.</code></p>
+<p class="has-line-data" data-line-start="188" data-line-end="189"><code>MetaData must be required from the Github API.</code></p>
+<p class="has-line-data" data-line-start="190" data-line-end="191"><code>Every Registeration will be unverified profile which after verification can be assigned role of Student or Superuser by Superuser after promoting</code></p>
+<pre><code class="has-line-data" data-line-start="193" data-line-end="274">URL: http://localhost:3000/api/register
 TYPE: POST
 HEADERS: NULL
 BODY:{
-    &quot;email&quot;: &quot;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="33475640474640564100030373545e525a5f1d505c5e">[email&#160;protected]</a>&quot;,
+    &quot;email&quot;: &quot;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9eeafbedeacbedfbecafa8def9f3fff7f2b0fdf1f3">[email&#160;protected]</a>&quot;,
     &quot;password&quot;: &quot;123&quot;,
     &quot;personal&quot;: {
-        &quot;name&quot;: &quot;ddfbvdfgb&quot;,
+        &quot;name&quot;: &quot;Suyash&quot;,
         &quot;college&quot;: &quot;PCCOE&quot;,
         &quot;department&quot;: &quot;COMP&quot;,
         &quot;year&quot;: &quot;TE&quot;,
@@ -221,8 +192,8 @@ BODY:{
     &quot;skills&quot;: {
       &quot;skill&quot;: [&quot;Js&quot;,&quot;Py&quot;,&quot;Node&quot;],
       &quot;projectsforskills&quot;: [&quot;https://www.linkedin.com/in/&quot;,&quot;https://www.linkedin.com/in/&quot;,&quot;https://www.linkedin.com/in/&quot;],
-      &quot;primaryskill&quot;:&quot;Node&quot;,
-      &quot;secondaryskill&quot;:&quot;Py&quot;,
+      &quot;primaryskill&quot;: &quot;Nodejs&quot;,
+      &quot;secondaryskill&quot;: &quot;Angular&quot;,
       &quot;cgpa&quot;: 9.82
     },
     &quot;rating&quot;:4.5,
@@ -234,9 +205,11 @@ BODY:{
         &quot;languages_known&quot;: [
             &quot;Hindi&quot;,
             &quot;English&quot;
-        ]
+        ],
+        &quot;pronoun&quot;:&quot;he/him&quot;
     },
     &quot;metaData&quot;: {
+        &quot;hasAdminAccess&quot;: false,
         &quot;github_metadata_object&quot;: {
             &quot;login&quot;: &quot;aditya&quot;,
             &quot;id&quot;: 45139041,
@@ -275,8 +248,8 @@ BODY:{
 }
 
 </code></pre>
-<p class="has-line-data" data-line-start="314" data-line-end="315"><strong>RESPONSE:</strong></p>
-<pre><code class="has-line-data" data-line-start="317" data-line-end="326">i. Success
+<p class="has-line-data" data-line-start="275" data-line-end="276"><strong>RESPONSE:</strong></p>
+<pre><code class="has-line-data" data-line-start="278" data-line-end="287">i. Success
     
 ii. Failure:
     {
@@ -285,85 +258,10 @@ ii. Failure:
     }
 
 </code></pre>
-<h2 class="code-line" data-line-start=327 data-line-end=328><a id="b_Superuser_Registration_327"></a>b) Superuser Registration</h2>
-<p class="has-line-data" data-line-start="329" data-line-end="330"><code>step1. Send the request to the following path.</code></p>
-<p class="has-line-data" data-line-start="331" data-line-end="332"><code>step2. After successful registration, an acknowledgment auto generated email will be sent to the user.</code></p>
-<p class="has-line-data" data-line-start="333" data-line-end="334"><code>Note: The request body should follow the same schema strictly. Typo/Case(small/capital) cannot be excused. These fields are 1:1 mapped with data on the server-side, missing fields, or mistyped filed names will raise unwanted errors.</code></p>
-<p class="has-line-data" data-line-start="335" data-line-end="336"><code>MetaData must be required from the Github api.</code></p>
-<pre><code class="has-line-data" data-line-start="338" data-line-end="398">URL: http://localhost:3000/api/register/student
-TYPE: POST
-HEADERS: NULL
-BODY: {
-        &quot;email&quot;: &quot;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0b4a5b3b493b5b0a5f1f180a7ada1a9aceea3afad">[email&#160;protected]</a>&quot;,
-        &quot;password&quot;: &quot;123&quot;,
-        &quot;personal&quot;: {
-          &quot;name&quot;: &quot;Bhavansh&quot;
-        },
-        &quot;social&quot;: {
-          &quot;phone&quot;: &quot;8806698766&quot;,
-          &quot;linkedin&quot;: &quot;https://www.linkedin.com/in/bhavansh-gupta-01bbb817a/&quot;,
-          &quot;github&quot;: &quot;https://github.com/bhavansh&quot;
-        },
-        &quot;optionals&quot;: {
-          &quot;introduction&quot;: &quot;Hello&quot;,
-          &quot;gender&quot;: &quot;Male&quot;,
-          &quot;age&quot;: &quot;20&quot;,
-          &quot;mother_tongue&quot;: &quot;Hindi&quot;,
-          &quot;languages_known&quot;: [&quot;Marathi&quot;,&quot;English&quot;]
-        },
-        &quot;metaData&quot;: {
-          &quot;github_metadata_object&quot;: {
-                &quot;login&quot;: &quot;bhavansh&quot;,
-                &quot;id&quot;: 45139041,
-                &quot;node_id&quot;: &quot;MDQ6VXNlcjQ1MTM5MDQx&quot;,
-                &quot;avatar_url&quot;: &quot;https://avatars3.githubusercontent.com/u/45139041?v=4&quot;,
-                &quot;gravatar_id&quot;: &quot;&quot;,
-                &quot;url&quot;: &quot;https://api.github.com/users/bhavansh&quot;,
-                &quot;html_url&quot;: &quot;https://github.com/bhavansh&quot;,
-                &quot;followers_url&quot;: &quot;https://api.github.com/users/bhavansh/followers&quot;,
-                &quot;following_url&quot;: &quot;https://api.github.com/users/bhavansh/following{/other_user}&quot;,
-                &quot;gists_url&quot;: &quot;https://api.github.com/users/bhavansh/gists{/gist_id}&quot;,
-                &quot;starred_url&quot;: &quot;https://api.github.com/users/bhavansh/starred{/owner}{/repo}&quot;,
-                &quot;subscriptions_url&quot;: &quot;https://api.github.com/users/bhavansh/subscriptions&quot;,
-                &quot;organizations_url&quot;: &quot;https://api.github.com/users/bhavansh/orgs&quot;,
-                &quot;repos_url&quot;: &quot;https://api.github.com/users/bhavansh/repos&quot;,
-                &quot;events_url&quot;: &quot;https://api.github.com/users/bhavansh/events{/privacy}&quot;,
-                &quot;received_events_url&quot;: &quot;https://api.github.com/users/bhavansh/received_events&quot;,
-                &quot;type&quot;: &quot;User&quot;,
-                &quot;site_admin&quot;: false,
-                &quot;name&quot;: &quot;Bhavansh Gupta&quot;,
-                &quot;company&quot;: null,
-                &quot;blog&quot;: &quot;&quot;,
-                &quot;location&quot;: &quot;Pune&quot;,
-                &quot;email&quot;: null,
-                &quot;hireable&quot;: null,
-                &quot;bio&quot;: &quot;Student of Computer Engineering at Pimpri Chinchwad College of Engineering.\r\nJust Starting&quot;,
-                &quot;twitter_username&quot;: &quot;bhavanshgupta&quot;,
-                &quot;public_repos&quot;: 20,
-                &quot;public_gists&quot;: 0,
-                &quot;followers&quot;: 28,
-                &quot;following&quot;: 65,
-                &quot;created_at&quot;: &quot;2018-11-18T08:07:57Z&quot;,
-                &quot;updated_at&quot;: &quot;2020-08-25T15:04:57Z&quot;
-            }
-        }
-      }
-
-</code></pre>
-<p class="has-line-data" data-line-start="399" data-line-end="400"><strong>RESPONSE:</strong></p>
-<pre><code class="has-line-data" data-line-start="402" data-line-end="411">i. Success
-        
-ii. Failure:
-    {
-        &quot;message&quot;: &quot;some error occurred while storing credentials&quot;,
-        &quot;error&quot;: {}
-    }
-
-</code></pre>
-<h1 class="code-line" data-line-start=412 data-line-end=413><a id="3_Fetching_Data_412"></a>3. Fetching Data</h1>
-<h2 class="code-line" data-line-start=414 data-line-end=415><a id="a_Student_Data_414"></a>a) Student Data</h2>
-<p class="has-line-data" data-line-start="416" data-line-end="417"><code>i. Get all verified Students</code></p>
-<pre><code class="has-line-data" data-line-start="419" data-line-end="441">    URL: http://localhost:3000/api/student/all
+<h1 class="code-line" data-line-start=288 data-line-end=289><a id="3_Fetching_Data_288"></a>3. Fetching Data</h1>
+<h2 class="code-line" data-line-start=290 data-line-end=291><a id="a_Student_Data_290"></a>a) Student Data</h2>
+<p class="has-line-data" data-line-start="292" data-line-end="293"><code>i. Get all verified Students</code></p>
+<pre><code class="has-line-data" data-line-start="295" data-line-end="317">    URL: http://localhost:3000/api/student/all
     TYPE: GET
     HEADERS: 
         {
@@ -385,8 +283,8 @@ ii. Failure:
                             “error”: {}
                 }
 </code></pre>
-<p class="has-line-data" data-line-start="442" data-line-end="443"><code>ii. Get Student info by its ID</code></p>
-<pre><code class="has-line-data" data-line-start="445" data-line-end="467">URL: http://localhost:3000/api/student/:id
+<p class="has-line-data" data-line-start="318" data-line-end="319"><code>ii. Get Student info by its ID</code></p>
+<pre><code class="has-line-data" data-line-start="321" data-line-end="343">URL: http://localhost:3000/api/student/:id
     TYPE: GET
     HEADERS: 
         {
@@ -408,8 +306,8 @@ ii. Failure:
                 }
 
 </code></pre>
-<p class="has-line-data" data-line-start="468" data-line-end="469"><code>iii. Get verified Students with query</code></p>
-<pre><code class="has-line-data" data-line-start="471" data-line-end="493">    URL: http://localhost:3000/api/student/?page=2&amp;&amp;limit=10
+<p class="has-line-data" data-line-start="344" data-line-end="345"><code>iii. Get verified Students with query</code></p>
+<pre><code class="has-line-data" data-line-start="347" data-line-end="369">    URL: http://localhost:3000/api/student/?page=2&amp;&amp;limit=10
     TYPE: GET
     HEADERS: 
         {
@@ -431,9 +329,9 @@ ii. Failure:
                             “error”: {}
                 }
 </code></pre>
-<h2 class="code-line" data-line-start=494 data-line-end=495><a id="b_Unverified_Profiles_494"></a>b) Unverified Profiles</h2>
-<p class="has-line-data" data-line-start="496" data-line-end="497"><code>i. Get all unverified student profiles</code></p>
-<pre><code class="has-line-data" data-line-start="499" data-line-end="522">    URL: http://localhost:3000/api/unverified/all
+<h2 class="code-line" data-line-start=370 data-line-end=371><a id="b_Unverified_Profiles_370"></a>b) Unverified Profiles</h2>
+<p class="has-line-data" data-line-start="372" data-line-end="373"><code>i. Get all unverified student profiles</code></p>
+<pre><code class="has-line-data" data-line-start="375" data-line-end="398">    URL: http://localhost:3000/api/unverified/all
     TYPE: GET
     HEADERS: 
         {
@@ -456,13 +354,36 @@ ii. Failure:
                             “error”: {}
                 }
 </code></pre>
-<h2 class="code-line" data-line-start=522 data-line-end=523><a id="c_Superuser_Data_522"></a>c) Superuser Data</h2>
-<p class="has-line-data" data-line-start="524" data-line-end="525"><code>i. Get all superusers</code></p>
-<pre><code class="has-line-data" data-line-start="526" data-line-end="549">    URL: http://localhost:3000/api/superuser/all
+<p class="has-line-data" data-line-start="399" data-line-end="400"><code>ii. Get unverified Student profiles info by its ID</code></p>
+<pre><code class="has-line-data" data-line-start="402" data-line-end="424">URL: http://localhost:3000/api/unverified/:id
     TYPE: GET
     HEADERS: 
         {
-            Authorization: Bearer &lt;student token goes here&gt;
+            Authorization: Bearer &lt;SuperUser token goes here&gt;
+        }
+    BODY: NULL
+    RESPONSE:
+        i.Success:
+    {
+                &quot;message&quot;: &quot;success&quot;,
+                &quot;doc&quot;: {//student data here}
+            }
+        ii. Failure:
+            a. Auth failure
+            b. Server error
+                {
+                    “message”: &quot;internal server error&quot;,
+                            “error”: {}
+                }
+
+</code></pre>
+<h2 class="code-line" data-line-start=425 data-line-end=426><a id="c_Superuser_Data_425"></a>c) Superuser Data</h2>
+<p class="has-line-data" data-line-start="427" data-line-end="428"><code>i. Get all superusers</code></p>
+<pre><code class="has-line-data" data-line-start="429" data-line-end="452">    URL: http://localhost:3000/api/superuser/all
+    TYPE: GET
+    HEADERS: 
+        {
+            Authorization: Bearer &lt;superuser token goes here&gt;
         }
     BODY: NULL
     RESPONSE: 
@@ -481,12 +402,12 @@ ii. Failure:
                 }
 
 </code></pre>
-<p class="has-line-data" data-line-start="550" data-line-end="551"><code>ii. Get Superuser info by its ID</code></p>
-<pre><code class="has-line-data" data-line-start="552" data-line-end="574">    URL: http://localhost:3000/api/student/:id
+<p class="has-line-data" data-line-start="453" data-line-end="454"><code>ii. Get Superuser info by its ID</code></p>
+<pre><code class="has-line-data" data-line-start="455" data-line-end="477">    URL: http://localhost:3000/api/superuser/:id
     TYPE: GET
     HEADERS: 
         {
-            Authorization: Bearer &lt;student token goes here&gt;
+            Authorization: Bearer &lt;superuser token goes here&gt;
         }
     BODY: NULL
     RESPONSE:
@@ -504,12 +425,12 @@ ii. Failure:
                 }
 
 </code></pre>
-<h1 class="code-line" data-line-start=575 data-line-end=576><a id="4_Update_Operations_575"></a>4. Update Operations</h1>
-<p class="has-line-data" data-line-start="577" data-line-end="578"><code>Note: Student data can be updated by student as well as superuser</code></p>
-<h2 class="code-line" data-line-start=578 data-line-end=579><a id="a_Update_student_data_578"></a>a). Update student data</h2>
+<h1 class="code-line" data-line-start=478 data-line-end=479><a id="4_Update_Operations_478"></a>4. Update Operations</h1>
+<p class="has-line-data" data-line-start="480" data-line-end="481"><code>Note: Student data can be updated by student as well as superuser</code></p>
+<h2 class="code-line" data-line-start=481 data-line-end=482><a id="a_Update_student_data_481"></a>a). Update student data</h2>
 <pre><code>Send a PATCH request to this api with the id of a particular student. The request body may include any field that is present in the database schema. (for reference check out the schema from the Registration api body).Update operation will override all the previous data, so creating a correct request body is the crucial part. Best practice is to copy the object as it is and only replace the required part and send entire object in the request body
 </code></pre>
-<pre><code class="has-line-data" data-line-start="583" data-line-end="618">URL: http://localhost:3000/api/student/update/:id
+<pre><code class="has-line-data" data-line-start="486" data-line-end="521">URL: http://localhost:3000/api/student/update/:id
 TYPE: PATCH
 HEADERS: 
         {
@@ -544,10 +465,10 @@ i. Success
             }
 
 </code></pre>
-<h2 class="code-line" data-line-start=619 data-line-end=620><a id="b_Update_superuser_data_619"></a>b). Update superuser data</h2>
+<h2 class="code-line" data-line-start=522 data-line-end=523><a id="b_Update_superuser_data_522"></a>b). Update superuser data</h2>
 <pre><code>Send a PATCH request to this api with the id of a particular student. The request body may include any field that is present in the database schema. (for reference check out the schema from the Registration api body).Update operation will override all the previous data, so creating a correct request body is the crucial part. Best practice is to copy the object as it is and only replace the required part and send entire object in the request body
 </code></pre>
-<pre><code class="has-line-data" data-line-start="624" data-line-end="656">URL: http://localhost:3000/api/superuser/update/:id
+<pre><code class="has-line-data" data-line-start="527" data-line-end="559">URL: http://localhost:3000/api/superuser/update/:id
     TYPE: PATCH
     HEADERS: 
             {
@@ -579,10 +500,10 @@ i. Success
                 }
 
 </code></pre>
-<h2 class="code-line" data-line-start=657 data-line-end=658><a id="c_Update_unverified_student_data_657"></a>c). Update unverified student data</h2>
+<h2 class="code-line" data-line-start=560 data-line-end=561><a id="c_Update_unverified_student_data_560"></a>c). Update unverified student data</h2>
 <pre><code>Send a PATCH request to this api with the id of a particular student. The request body may include any field that is present in the database schema. (for reference check out the schema from the Registration api body).Update operation will override all the previous data, so creating a correct request body is the crucial part. Best practice is to copy the object as it is and only replace the required part and send entire object in the request body
 </code></pre>
-<pre><code class="has-line-data" data-line-start="662" data-line-end="696">URL: http://localhost:3000/api/unverified/update/:id
+<pre><code class="has-line-data" data-line-start="565" data-line-end="599">URL: http://localhost:3000/api/unverified/update/:id
 TYPE: PATCH
 HEADERS: 
         {
@@ -616,10 +537,10 @@ i. Success
             }
 
 </code></pre>
-<h1 class="code-line" data-line-start=697 data-line-end=698><a id="5_Delete_Operations_697"></a>5. Delete Operations</h1>
-<p class="has-line-data" data-line-start="699" data-line-end="700"><code>Note: Student data can be deleted by the student as well as superuser</code></p>
-<h2 class="code-line" data-line-start=701 data-line-end=702><a id="a_Delete_student_data_701"></a>a). Delete student data</h2>
-<pre><code class="has-line-data" data-line-start="704" data-line-end="722">    URL: http://localhost:3000/api/student/delete/:id
+<h1 class="code-line" data-line-start=600 data-line-end=601><a id="5_Delete_Operations_600"></a>5. Delete Operations</h1>
+<p class="has-line-data" data-line-start="602" data-line-end="603"><code>Note: Student data can be deleted by the student as well as superuser</code></p>
+<h2 class="code-line" data-line-start=604 data-line-end=605><a id="a_Delete_student_data_604"></a>a). Delete student data</h2>
+<pre><code class="has-line-data" data-line-start="607" data-line-end="625">    URL: http://localhost:3000/api/student/delete/:id
     TYPE: DELETE
     HEADERS: 
             {
@@ -637,8 +558,8 @@ i. Success
                         error: {}
             }
 </code></pre>
-<h2 class="code-line" data-line-start=723 data-line-end=724><a id="b_Delete_superuser_data_723"></a>b). Delete superuser data</h2>
-<pre><code class="has-line-data" data-line-start="726" data-line-end="743">    URL: http://localhost:3000/api/superuser/delete/:id
+<h2 class="code-line" data-line-start=626 data-line-end=627><a id="b_Delete_superuser_data_626"></a>b). Delete superuser data</h2>
+<pre><code class="has-line-data" data-line-start="629" data-line-end="646">    URL: http://localhost:3000/api/superuser/delete/:id
     TYPE: DELETE
     HEADERS: 
             {
@@ -655,8 +576,8 @@ i. Success
                     message: &quot;internal server error&quot;,
                             error: {}   }
 </code></pre>
-<h2 class="code-line" data-line-start=744 data-line-end=745><a id="b_Delete_unverified_student_data_744"></a>b). Delete unverified student data</h2>
-<pre><code class="has-line-data" data-line-start="747" data-line-end="765">    URL: http://localhost:3000/api/unverified/delete/:id
+<h2 class="code-line" data-line-start=647 data-line-end=648><a id="b_Delete_unverified_student_data_647"></a>b). Delete unverified student data</h2>
+<pre><code class="has-line-data" data-line-start="650" data-line-end="668">    URL: http://localhost:3000/api/unverified/delete/:id
     TYPE: DELETE
     HEADERS: 
             {
@@ -674,9 +595,9 @@ i. Success
                         error: {}
             }
 </code></pre>
-<h1 class="code-line" data-line-start=766 data-line-end=767><a id="6_Verify_profiles_766"></a>6. Verify profiles</h1>
-<h2 class="code-line" data-line-start=768 data-line-end=769><a id="a_Approve_profile_768"></a>a). Approve profile</h2>
-<pre><code class="has-line-data" data-line-start="771" data-line-end="789">    URL: http://localhost:3000/api/unverified/approve/:id
+<h1 class="code-line" data-line-start=669 data-line-end=670><a id="6_Verify_profiles_669"></a>6. Verify profiles</h1>
+<h2 class="code-line" data-line-start=671 data-line-end=672><a id="a_Approve_profile_671"></a>a). Approve profile</h2>
+<pre><code class="has-line-data" data-line-start="674" data-line-end="692">    URL: http://localhost:3000/api/unverified/approve/:id
     TYPE: POST
     HEADERS: 
             {
@@ -694,8 +615,8 @@ i. Success
                         error: {}
             }
 </code></pre>
-<h2 class="code-line" data-line-start=789 data-line-end=790><a id="b_Reject_profile_789"></a>b). Reject profile</h2>
-<pre><code class="has-line-data" data-line-start="792" data-line-end="811">    URL: http://localhost:3000/api/unverified/approve/:id
+<h2 class="code-line" data-line-start=692 data-line-end=693><a id="b_Reject_profile_692"></a>b). Reject profile</h2>
+<pre><code class="has-line-data" data-line-start="695" data-line-end="714">    URL: http://localhost:3000/api/unverified/approve/:id
     TYPE: POST
     HEADERS: 
             {
@@ -714,9 +635,9 @@ i. Success
             {
                 message: &quot;internal server error&quot;, error: {} }
 </code></pre>
-<h1 class="code-line" data-line-start=812 data-line-end=813><a id="7_Broadcast_emails_812"></a>7. Broadcast emails</h1>
-<h2 class="code-line" data-line-start=814 data-line-end=815><a id="a_Broadcast_email_to_all_users_814"></a>a). Broadcast email to all users</h2>
-<pre><code class="has-line-data" data-line-start="817" data-line-end="838">URL: http://localhost:3000/api/broadcast/all
+<h1 class="code-line" data-line-start=715 data-line-end=716><a id="7_Broadcast_emails_715"></a>7. Broadcast emails</h1>
+<h2 class="code-line" data-line-start=717 data-line-end=718><a id="a_Broadcast_email_to_all_users_717"></a>a). Broadcast email to all users</h2>
+<pre><code class="has-line-data" data-line-start="720" data-line-end="741">URL: http://localhost:3000/api/broadcast/all
     TYPE: POST
     HEADERS: 
             {
@@ -737,8 +658,8 @@ i. Success
             }
 
 </code></pre>
-<h2 class="code-line" data-line-start=839 data-line-end=840><a id="b_Broadcast_email_to_verified_students_839"></a>b). Broadcast email to verified students</h2>
-<pre><code class="has-line-data" data-line-start="842" data-line-end="863">URL: http://localhost:3000/api/broadcast/students
+<h2 class="code-line" data-line-start=742 data-line-end=743><a id="b_Broadcast_email_to_verified_students_742"></a>b). Broadcast email to verified students</h2>
+<pre><code class="has-line-data" data-line-start="745" data-line-end="766">URL: http://localhost:3000/api/broadcast/students
     TYPE: POST
     HEADERS: 
             {
@@ -759,8 +680,8 @@ i. Success
                 }
 
 </code></pre>
-<h2 class="code-line" data-line-start=864 data-line-end=865><a id="c_Broadcast_email_to_unverified_profiles_864"></a>c). Broadcast email to unverified profiles</h2>
-<pre><code class="has-line-data" data-line-start="867" data-line-end="888">    URL: http://localhost:3000/api/broadcast/unverified
+<h2 class="code-line" data-line-start=767 data-line-end=768><a id="c_Broadcast_email_to_unverified_profiles_767"></a>c). Broadcast email to unverified profiles</h2>
+<pre><code class="has-line-data" data-line-start="770" data-line-end="791">    URL: http://localhost:3000/api/broadcast/unverified
     TYPE: POST
     HEADERS: 
             {
@@ -781,8 +702,8 @@ i. Success
                 }
 
 </code></pre>
-<h2 class="code-line" data-line-start=889 data-line-end=890><a id="d_Broadcast_email_to_Superusers_889"></a>d). Broadcast email to Superusers</h2>
-<pre><code class="has-line-data" data-line-start="892" data-line-end="914">
+<h2 class="code-line" data-line-start=792 data-line-end=793><a id="d_Broadcast_email_to_Superusers_792"></a>d). Broadcast email to Superusers</h2>
+<pre><code class="has-line-data" data-line-start="795" data-line-end="817">
     URL: http://localhost:3000/api/broadcast/superuser
     TYPE: POST
     HEADERS: 
@@ -804,12 +725,12 @@ i. Success
                 }
 
 </code></pre>
-<h1 class="code-line" data-line-start=915 data-line-end=916><a id="8_Forgot_password_mechanism_915"></a>8. Forgot password mechanism</h1>
-<p class="has-line-data" data-line-start="917" data-line-end="918"><code>step1. send a GET request to the http://localhost:3000/api/forgotpassword/student/:id. An OTP will be sent to you on your registered email.</code></p>
-<p class="has-line-data" data-line-start="919" data-line-end="920"><code>step2. send a POST request containing OTP in its body to the http://localhost:3000/api/forgotpassword/verify. If the OTP is valid and not expired, then a JSON web token will be generated. This must be sent in request headers for the next request.</code></p>
-<p class="has-line-data" data-line-start="921" data-line-end="922"><code>step3. Send a POST request to http://localhost:3000/api/forgotpassword/update/student/:id for student users and http://localhost:3000/api/forgotpassword/update/superuser/:id with the updated password in its body.</code></p>
-<h2 class="code-line" data-line-start=923 data-line-end=924><a id="a_Get_OTP_923"></a>a). Get OTP</h2>
-<pre><code class="has-line-data" data-line-start="926" data-line-end="938">    URL: http://localhost:3000/api/forgotpassword/student/:id
+<h1 class="code-line" data-line-start=818 data-line-end=819><a id="8_Forgot_password_mechanism_818"></a>8. Forgot password mechanism</h1>
+<p class="has-line-data" data-line-start="820" data-line-end="821"><code>step1. send a GET request to the http://localhost:3000/api/forgotpassword/student/:id. An OTP will be sent to you on your registered email.</code></p>
+<p class="has-line-data" data-line-start="822" data-line-end="823"><code>step2. send a POST request containing OTP in its body to the http://localhost:3000/api/forgotpassword/verify. If the OTP is valid and not expired, then a JSON web token will be generated. This must be sent in request headers for the next request.</code></p>
+<p class="has-line-data" data-line-start="824" data-line-end="825"><code>step3. Send a POST request to http://localhost:3000/api/forgotpassword/update/student/:id for student users and http://localhost:3000/api/forgotpassword/update/superuser/:id with the updated password in its body.</code></p>
+<h2 class="code-line" data-line-start=826 data-line-end=827><a id="a_Get_OTP_826"></a>a). Get OTP</h2>
+<pre><code class="has-line-data" data-line-start="829" data-line-end="841">    URL: http://localhost:3000/api/forgotpassword/student/:id
     TYPE: GET
 HEADERS: NULL
     BODY: NULL
@@ -821,8 +742,12 @@ HEADERS: NULL
                         error: {}
             }
 </code></pre>
-<h2 class="code-line" data-line-start=939 data-line-end=940><a id="b_verify_OTP_939"></a>b). verify OTP</h2>
-<pre><code class="has-line-data" data-line-start="942" data-line-end="957">URL: http://localhost:3000/api/forgotpassword/verify
+<p class="has-line-data" data-line-start="842" data-line-end="843">**Note : Routes to Get Otp for SuperUser and Unverified Profiles are as follows: **</p>
+<pre><code class="has-line-data" data-line-start="844" data-line-end="847">URL: http://localhost:3000/api/forgotpassword/unverified/:id
+URL: http://localhost:3000/api/forgotpassword/superuser/:id
+</code></pre>
+<h2 class="code-line" data-line-start=849 data-line-end=850><a id="b_verify_OTP_849"></a>b). verify OTP</h2>
+<pre><code class="has-line-data" data-line-start="852" data-line-end="867">URL: http://localhost:3000/api/forgotpassword/verify
     TYPE: POST
     HEADERS: NULL
     BODY: {
@@ -837,8 +762,8 @@ HEADERS: NULL
 
 
 </code></pre>
-<h2 class="code-line" data-line-start=958 data-line-end=959><a id="c_Update_student_password_958"></a>c). Update student password</h2>
-<pre><code class="has-line-data" data-line-start="961" data-line-end="979">URL: http://localhost:3000/api/forgotpassword/update/student/:id
+<h2 class="code-line" data-line-start=868 data-line-end=869><a id="c_Update_student_password_868"></a>c). Update student password</h2>
+<pre><code class="has-line-data" data-line-start="871" data-line-end="889">URL: http://localhost:3000/api/forgotpassword/update/student/:id
     TYPE: POST
     HEADERS: 
         {
@@ -856,8 +781,8 @@ HEADERS: NULL
                             error: {}
                 }
 </code></pre>
-<h2 class="code-line" data-line-start=980 data-line-end=981><a id="d_Update_superuser_password_980"></a>d). Update superuser password</h2>
-<pre><code class="has-line-data" data-line-start="983" data-line-end="1002">URL: http://localhost:3000/api/forgotpassword/update/superuser/:id
+<h2 class="code-line" data-line-start=890 data-line-end=891><a id="d_Update_superuser_password_890"></a>d). Update superuser password</h2>
+<pre><code class="has-line-data" data-line-start="893" data-line-end="912">URL: http://localhost:3000/api/forgotpassword/update/superuser/:id
     TYPE: POST
     HEADERS: 
             {
@@ -875,5 +800,47 @@ HEADERS: NULL
                             error: {}
                 }
 
+</code></pre>
+<h2 class="code-line" data-line-start=913 data-line-end=914><a id="e_Update_Unverified_Profile_password_913"></a>e). Update Unverified Profile password</h2>
+<pre><code class="has-line-data" data-line-start="916" data-line-end="935">URL: http://localhost:3000/api/forgotpassword/update/unverified/:id
+    TYPE: POST
+    HEADERS: 
+            {
+                Authorization: Bearer &lt;forgot password token goes here&gt;
+            }
+    BODY: {
+            &quot;password&quot;:&quot;12345&quot;
+          }
+    RESPONSE: 
+        i. Success
+        ii. Failure:
+            a. Auth failure
+            b. {
+                    message: &quot;internal server error&quot;,
+                            error: {}
+                }
+
+</code></pre>
+<h1 class="code-line" data-line-start=936 data-line-end=937><a id="9_Promotion_to_SuperUser_936"></a>9. Promotion to SuperUser</h1>
+<pre><code class="has-line-data" data-line-start="938" data-line-end="959">URL: http://localhost:3000/api/superuser/promote:id
+    TYPE: POST
+    HEADERS: 
+        {
+            Authorization: Bearer &lt;superuser token goes here&gt;
+        } 
+    BODY: NULL
+    RESPONSE: 
+        i.Success:
+            {
+                &quot;message&quot;: &quot;success&quot;,
+                &quot;doc&quot;: {//student data here}
+            }
+        ii. Failure:
+            a. Auth failure
+            b. Server error
+                {
+                    “message”: &quot;internal server error&quot;,
+                            “error”: {}
+                }
 </code></pre>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body></html>

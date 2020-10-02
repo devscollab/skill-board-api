@@ -167,15 +167,29 @@ exports.promote = async(req, res) => {
 
     newSuperUser.save()
         .then(doc => {
+
+            Student.findByIdAndDelete({ _id: studentProfile._id })
+            .then(doc => {
+                console.log("Student Deleted Succesfully")
+            })
+            .catch(err => {
+                res.status(500).json({
+                    message: "Deletion Error",
+                    error: err
+                })
+            })
+
             res.status(200).json({
                 message: "successfully promoted",
                 doc: doc,
             })
         })
         .catch(err => {
+            console.log(err)
             res.status(500).json({
                 message: "internal server error",
                 error: err
+            
             })
         })
 }
