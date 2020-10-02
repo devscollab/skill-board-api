@@ -113,7 +113,7 @@ const studentSchema = new mongoose.Schema({
             },
             pronoun: {
                 type: String,
-                enum: ["she/her", "he/him", "they/them"]
+                enum: ["she/her", "he/him", "they/them"],
                 required: true,
             },
             age: {

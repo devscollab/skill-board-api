@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const SuperUser = require("../models/superuser");
+const Student = require("../models/student");
 
 exports.getSuperuserById = (req, res) => {
     SuperUser.find({ _id: req.params.id })
@@ -120,4 +121,61 @@ exports.updatePassword = async(req, res) => {
                 });
         }
     })
+}
+
+exports.promote = async(req, res) => {
+    //promotion logic
+    let studentProfile = {}
+    await Student.findById({ _id: req.params.id })
+        .then(doc => {
+            studentProfile = doc;
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
+
+    studentProfile.metaData.hasAdminAccess = true;
+
+    const newSuperUser = new SuperUser({
+        _id: studentProfile._id,
+        email: studentProfile.email,
+        password: studentProfile.password,
+        personal: {
+            name: studentProfile.personal.name
+        },
+        social: {
+            phone: studentProfile.social.phone,
+            linkedin: studentProfile.social.linkedin,
+            github: studentProfile.social.github,
+        },
+        optionals: {
+            introduction: studentProfile.optionals.introduction,
+            gender: studentProfile.optionals.gender,
+            age: studentProfile.optionals.age,
+            mother_tongue: studentProfile.optionals.mother_tongue,
+            languages_known: studentProfile.optionals.languages_known,
+            pronoun: studentProfile.optionals.pronoun,
+        },
+        metaData: {
+            hasAdminAccess: studentProfile.metaData.hasAdminAccess,
+            github_metadata_object: studentProfile.metaData.github_metadata_object,
+        },
+    })
+
+    newSuperUser.save()
+        .then(doc => {
+            res.status(200).json({
+                message: "successfully promoted",
+                doc: doc,
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
 }

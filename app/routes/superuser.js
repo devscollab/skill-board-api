@@ -12,4 +12,6 @@ router.patch("/update/:id", auth.superuserAuth, superuserController.updateSuperu
 
 router.delete("/delete/:id", auth.superuserAuth, superuserController.deleteSuperuserById);
 
+router.post('/promote/:id', auth.superuserAuth, superuserController.promote);
+
 module.exports = router;
