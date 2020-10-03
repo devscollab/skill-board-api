@@ -6,6 +6,12 @@ const auth = require("../controllers/auth");
 
 router.get("/all", auth.studentAuth, studentController.getAllStudentProfiles);
 
+router.get(
+  "/sort",
+  auth.studentAuth,
+  studentController.getSortedListOfStudents
+);
+
 router.get("/:id", auth.studentAuth, studentController.getStudentProfileById);
 
 router.patch(
@@ -21,11 +27,5 @@ router.delete(
 );
 
 router.get("/", auth.studentAuth, studentController.getStudentsByQuery);
-
-router.get(
-  "/sort",
-  auth.studentAuth,
-  studentController.getSortedListOfStudents
-);
 
 module.exports = router;
