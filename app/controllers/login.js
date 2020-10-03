@@ -26,7 +26,8 @@ exports.login = async(req, res) => {
                             res.status(200).json({
                                 message: "login successful",
                                 token: token,
-                                role: "unverified"
+                                role: "unverified",
+                                userId: doc[0]._id
                             })
                         } else {
                             res.status(401).json({
@@ -54,7 +55,8 @@ exports.login = async(req, res) => {
                                         res.status(200).json({
                                             message: "login successful",
                                             token: token,
-                                            role: "student"
+                                            role: "student",
+                                            userId: document[0]._id
                                         })
                                     } else {
                                         res.status(401).json({
@@ -84,7 +86,8 @@ exports.login = async(req, res) => {
                                                     res.status(200).json({
                                                         message: "login successful",
                                                         token: token,
-                                                        role: "superuser"
+                                                        role: "superuser",
+                                                        userId: docs[0]._id
                                                     })
                                                 } else {
                                                     res.status(401).json({

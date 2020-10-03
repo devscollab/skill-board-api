@@ -122,7 +122,7 @@ exports.reject = (req, res) => {
 }
 
 exports.deleteUnverifiedUserById = (req, res) => {
-    unverifiedProfiles.findByIdAndDelete({ _id: req.params.id })
+    UnverifiedProfiles.findByIdAndDelete({ _id: req.params.id })
         .then(doc => {
             res.status(200).json({
                 message: "successfully deleted",
