@@ -25,6 +25,8 @@
 
 * ##  Promotion to SuperUser
 
+* ##  Sorting Users based on parameters
+
 ### Note: development server is deployed on Heroku at [https://skboard.herokuapp.com](https://skboard.herokuapp.com/)
 
     While making API calls, replace http://localhost:3000 with the Heroku URL. SMTP and JWT are disabled for the development server. So you can make API calls without any restrictions. A separate database is allotted for the development server so less chances of breaking the application during development.
@@ -935,6 +937,9 @@ URL: http://localhost:3000/api/forgotpassword/update/unverified/:id
 ```
 
 # 9. Promotion to SuperUser
+
+```SuperUser can now promote any student to a superuser after profile has been verified```
+
 ```
 URL: http://localhost:3000/api/superuser/promote:id
 	TYPE: POST
@@ -957,3 +962,31 @@ URL: http://localhost:3000/api/superuser/promote:id
 		            		“error”: {}
 				}
 ```
+
+# 10. Sorting Students based on parameters
+
+```Students can now be sorted based on Student rating```
+
+```
+URL: localhost:3000/api/student/sort?prop1=some&prop2=some&prop3=some
+	TYPE: POST
+	HEADERS: 
+		{
+			Authorization: Bearer <student token goes here>
+		} 
+	BODY: NULL
+	RESPONSE: 
+		i.Success:
+			{
+			    "message": "success",
+			    "doc": {//student data sorted here}
+			}
+		ii. Failure:
+			a. Auth failure
+			b. Server error
+				{
+					“message”: "internal server error",
+		            		“error”: {}
+				}
+```
+
