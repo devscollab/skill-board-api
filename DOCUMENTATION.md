@@ -144,7 +144,10 @@ There can be multiple reasons for the auth to fail
 
 ```step2. save the token from the response in browser LocalStorage.```
 
-```step3. Use it with every request to the server. The missing token will lead to denial of service from the server-side.```
+```step3. Use it with every request to the server. The missing token will lead to authentication error 400 bad request from the server.```
+
+
+```note: This is a common path for all three types of user for the application i.e unverified user, student user and superuser```
 
 ```
 URL: http://localhost:3000/api/login/
@@ -184,11 +187,14 @@ iii. Password doesn't match
 
 ```step2. After successful registration, an acknowledgment auto generated email will be sent to the user.```
 
-```Note: The request body should follow the same schema strictly. Typo/Case(small/capital) cannot be excused. These fields are 1:1 mapped with data on the server-side, missing fields, or mistyped field names will raise unwanted errors.```
+```Note 1: The server is able to handle SMTP error raised when a registered email doesn't exist. While testing the registration using a dummy email is possible but the acknowledgment email will not be sent because of this reason.```
 
-```MetaData must be required from the Github API.```
 
-```Every Registeration will be unverified profile which after verification can be assigned role of Student or Superuser by Superuser after promoting```
+```Note 2: The request body should follow the same schema strictly. Typo/Case(small/capital) cannot be excused. These fields are 1:1 mapped with data on the server. Missing fields, or mistyped field names will raise unwanted errors.```
+
+```MetaData must be required from the Github API. This object can be empty for while testing.```
+
+```Every Registration will be an unverified profile which after verification can be assigned the role of Student or Superuser by Superuser after promoting```
 
 ```
 URL: http://localhost:3000/api/register
@@ -271,6 +277,25 @@ BODY:{
     }
 }
 
+```
+
+```
+Note:
+1. The options that can be sent to the server for the optionals.pronoun key are "she/her", "he/him", "they/them". 
+2. The options in the skill array will be names of the languages/framworks/software that the user is skilled in. 
+3. The naming convention for the skills are as follows:
+    a. The first letter should be capital English Alphabet.
+    b. If the name consists of two words, then the words must be separated by a single space.
+    c. There should be no leading or trailing spaces.
+    d. There should be no special symbols.
+    eg 1: "Nodejs"
+        "Machine Learning"
+        "HTML5"
+    will be accepted.
+    eg 2: "nodejs"
+          "machineLearning"
+          "HTML "
+    will not be accepted  
 ```
 
 **RESPONSE:**
@@ -367,7 +392,7 @@ URL: http://localhost:3000/api/student/:id
 		            		“error”: {}
 				}
 ```
-
+```Note: Currently the limit is set to 10 by default. This issue will be resolved in upcoming versions```
 ## b) Unverified Profiles
 
 ```i. Get all unverified student profiles```
@@ -377,7 +402,7 @@ URL: http://localhost:3000/api/student/:id
 	TYPE: GET
 	HEADERS: 
 		{
-			Authorization: Bearer <student token goes here>
+			Authorization: Bearer <superuser token goes here>
 		}
 	BODY: NULL
 	RESPONSE: 
@@ -475,6 +500,15 @@ URL: http://localhost:3000/api/unverified/:id
 				}
 
 ```
+## d) Search bar, filter, sort helper API 
+
+```i. Filter students by Primary Skill, Secondary Skill and student rating.```
+
+```ii. Get students by Name```
+
+```iii. Sort Students based on rating```
+
+```Note: Currently we are working on these API and the docs will updated once they are working.```
 
 # 4. Update Operations
 
@@ -542,7 +576,8 @@ URL: http://localhost:3000/api/superuser/update/:id
 			"gender": "Male",
 			"age": "20",
 			"mother_tongue": "Hindi",
-			"languages_known": ["Marathi","English"]
+			"languages_known": ["Marathi","English"],
+            "pronoun":"he/him"
 			},
 		}
 	RESPONSE: 
@@ -581,7 +616,8 @@ BODY: {
 	    "Skills": {
 	      "skill": ["Js","Py","Node"],
 		      "projectsforskills": ["https://www.linkedin.com/in/","https://www.linkedin.com/in/","https://www.linkedin.com/in/"],
-		      "topskill": "Py",
+		      "primaryskill": "Py",
+              "secondaryskill": "Js",
 		      "cgpa": 9.82
 		    }
 	}
@@ -712,6 +748,29 @@ i. Success
 			{
 				message: "internal server error", error: {}	}
 ```
+## b). Promote profile to superuser
+
+```
+	URL: http://localhost:3000/api/superuser/promote/:id
+	TYPE: POST
+	HEADERS: 
+			{
+				Authorization: Bearer <superuser token goes here>
+			}
+	BODY: NULL
+	RESPONSE: {
+				 "message":"some message"
+			  }
+
+	i. Success
+			
+	ii. Failure:
+		a. Auth failure
+		b. Server error
+			{
+				message: "internal server error", error: {}	
+			}
+```
 
 # 7. Broadcast emails
 
@@ -793,7 +852,6 @@ URL: http://localhost:3000/api/broadcast/students
 ## d). Broadcast email to Superusers
 
 ```
-
 	URL: http://localhost:3000/api/broadcast/superuser
 	TYPE: POST
 	HEADERS: 
@@ -932,28 +990,4 @@ URL: http://localhost:3000/api/forgotpassword/update/unverified/:id
 		            		error: {}
 				}
 
-```
-
-# 9. Promotion to SuperUser
-```
-URL: http://localhost:3000/api/superuser/promote:id
-	TYPE: POST
-	HEADERS: 
-		{
-			Authorization: Bearer <superuser token goes here>
-		} 
-	BODY: NULL
-	RESPONSE: 
-		i.Success:
-			{
-			    "message": "success",
-			    "doc": {//student data here}
-			}
-		ii. Failure:
-			a. Auth failure
-			b. Server error
-				{
-					“message”: "internal server error",
-		            		“error”: {}
-				}
 ```
