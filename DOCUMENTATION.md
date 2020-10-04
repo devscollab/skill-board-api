@@ -25,6 +25,8 @@
 
 * ##  Promotion to SuperUser
 
+* ##  Sorting Users based on parameters
+
 ### Note: development server is deployed on Heroku at [https://skboard.herokuapp.com](https://skboard.herokuapp.com/)
 
     While making API calls, replace http://localhost:3000 with the Heroku URL. SMTP and JWT are disabled for the development server. So you can make API calls without any restrictions. A separate database is allotted for the development server so less chances of breaking the application during development.
@@ -502,11 +504,59 @@ URL: http://localhost:3000/api/unverified/:id
 ```
 ## d) Search bar, filter, sort helper API 
 
-```i. Filter students by Primary Skill, Secondary Skill and student rating.```
+**i. Filter students by Primary Skill, Secondary Skill and student rating.**
 
-```ii. Get students by Name```
+```
+URL: localhost:3000/api/student/sort?prop1=some&prop2=some&prop3=some
+	TYPE: GET
+	HEADERS: 
+		{
+			Authorization: Bearer <student token goes here>
+		} 
+	BODY: NULL
+	RESPONSE: 
+		i.Success:
+			{
+			    "message": "success",
+			    "doc": {//student data sorted here}
+			}
+		ii. Failure:
+			a. Auth failure
+			b. Server error
+				{
+					“message”: "internal server error",
+		            		“error”: {}
+				}
+```
+```Note: For using URL queries, prop1 is mandated otherwise other params will not be detected.```
 
-```iii. Sort Students based on rating```
+**ii. Get students by Name**
+
+>This functionality is yet to be added
+
+**iii. Sort Students based on rating(simple sort)**
+```
+URL: localhost:3000/api/student/sort
+	TYPE: GET
+	HEADERS: 
+		{
+			Authorization: Bearer <student token goes here>
+		} 
+	BODY: NULL
+	RESPONSE: 
+		i.Success:
+			{
+			    "message": "success",
+			    "doc": {//student data sorted here}
+			}
+		ii. Failure:
+			a. Auth failure
+			b. Server error
+				{
+					“message”: "internal server error",
+		            “error”: {}
+				}
+```
 
 ```Note: Currently we are working on these API and the docs will updated once they are working.```
 
@@ -681,7 +731,7 @@ i. Success
 		            		error: {}	}
 ```
 
-## b). Delete unverified student data
+## c). Delete unverified student data
 
 ```		
 	URL: http://localhost:3000/api/unverified/delete/:id
@@ -748,7 +798,7 @@ i. Success
 			{
 				message: "internal server error", error: {}	}
 ```
-## b). Promote profile to superuser
+## c). Promote profile to superuser
 
 ```
 	URL: http://localhost:3000/api/superuser/promote/:id
