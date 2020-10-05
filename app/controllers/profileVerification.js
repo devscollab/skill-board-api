@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 
 const UnverifiedProfiles = require('../models/unverifiedProfiles');
 const Student = require('../models/student');
+const SuperUser = require('../models/superuser');
 
 const email = require('../controllers/email');
 
@@ -75,6 +76,7 @@ exports.approve = (req, res) => {
                     age: doc[0].optionals.age,
                     mother_tongue: doc[0].optionals.mother_tongue,
                     languages_known: doc[0].optionals.languages_known,
+                    pronoun: doc[0].optionals.pronoun
                 },
                 metaData: {
                     hasAdminAccess: doc[0].metaData.hasAdminAccess,
@@ -120,7 +122,7 @@ exports.reject = (req, res) => {
 }
 
 exports.deleteUnverifiedUserById = (req, res) => {
-    unverifiedProfiles.findByIdAndDelete({ _id: req.params.id })
+    UnverifiedProfiles.findByIdAndDelete({ _id: req.params.id })
         .then(doc => {
             res.status(200).json({
                 message: "successfully deleted",

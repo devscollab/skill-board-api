@@ -13,6 +13,7 @@ const registerRoutes = require("./app/routes/register");
 const superuserRoutes = require("./app/routes/superuser");
 const unverifiedProfileRoutes = require("./app/routes/profileVerification");
 const forgotPasswordRoutes = require("./app/routes/forgotPassword");
+const searchStudent = require("./app/routes/search")
 
 const auth = require("./app/controllers/auth"); //this auth can be used to check if token is present or not
 
@@ -71,6 +72,7 @@ app.use("/api/student", studentRoutes);
 app.use("/api/superuser", superuserRoutes);
 app.use("/api/unverified", unverifiedProfileRoutes);
 app.use("/api/forgotpassword", forgotPasswordRoutes);
+app.use("/api/search" , searchStudent)
 
 // Email Test Route
 // app.use("/api/emailtest", emailTest);

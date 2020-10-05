@@ -6,7 +6,7 @@ const Student = require("../models/student");
 const SuperUser = require("../models/superuser");
 const UnverfiedUser = require('../models/unverifiedProfiles');
 
-exports.loginStudent = async(req, res) => {
+exports.login = async(req, res) => {
     await UnverfiedUser.find({ email: req.body.email })
         .then(doc => {
             if (doc.length > 0) {
@@ -26,7 +26,8 @@ exports.loginStudent = async(req, res) => {
                             res.status(200).json({
                                 message: "login successful",
                                 token: token,
-                                role: "unverified"
+                                role: "unverified",
+                                userId: doc[0]._id
                             })
                         } else {
                             res.status(401).json({
@@ -54,13 +55,47 @@ exports.loginStudent = async(req, res) => {
                                         res.status(200).json({
                                             message: "login successful",
                                             token: token,
-                                            role: "student"
+                                            role: "student",
+                                            userId: document[0]._id
                                         })
                                     } else {
                                         res.status(401).json({
                                             message: "login failed",
                                             error: "password doesnt match"
                                         })
+                                    }
+                                })
+                        } else {
+                            SuperUser.find({ email: req.body.email })
+                                .then(docs => {
+                                    if (docs.length < 1) {
+                                        res.status(401).json({
+                                            message: "user not found"
+                                        })
+                                    } else {
+                                        bcrypt.compare(req.body.password, docs[0].password)
+                                            .then(result => {
+                                                if (result === true) {
+                                                    const token = jwt.sign({
+                                                            email: req.body.email,
+                                                            role: "superuser"
+                                                        },
+                                                        process.env.JWT_KEY, {
+                                                            expiresIn: '10h'
+                                                        })
+                                                    res.status(200).json({
+                                                        message: "login successful",
+                                                        token: token,
+                                                        role: "superuser",
+                                                        userId: docs[0]._id
+                                                    })
+                                                } else {
+                                                    res.status(401).json({
+                                                        message: "login failed",
+                                                        error: "password doesnt match"
+                                                    })
+                                                }
+                                            })
                                     }
                                 })
                         }
@@ -78,38 +113,4 @@ exports.loginStudent = async(req, res) => {
         })
 
 
-}
-
-exports.loginSuperuser = (req, res) => {
-    SuperUser.find({ email: req.body.email })
-        .then(docs => {
-            if (docs.length < 1) {
-                res.status(401).json({
-                    message: "user not found"
-                })
-            } else {
-                bcrypt.compare(req.body.password, docs[0].password)
-                    .then(result => {
-                        if (result === true) {
-                            const token = jwt.sign({
-                                    email: req.body.email,
-                                    role: "superuser"
-                                },
-                                process.env.JWT_KEY, {
-                                    expiresIn: '10h'
-                                })
-                            res.status(200).json({
-                                message: "login successful",
-                                token: token,
-                                role: "superuser"
-                            })
-                        } else {
-                            res.status(401).json({
-                                message: "login failed",
-                                error: "password doesnt match"
-                            })
-                        }
-                    })
-            }
-        })
 }

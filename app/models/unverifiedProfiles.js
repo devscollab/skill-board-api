@@ -111,6 +111,11 @@ const profilesSchema = new mongoose.Schema({
                 enum: ["Male", "Female", "Other"],
                 required: true,
             },
+            pronoun: {
+                type: String,
+                enum: ["she/her", "he/him", "they/them"],
+                required: true,
+            },
             age: {
                 type: Number,
                 min: 10,
