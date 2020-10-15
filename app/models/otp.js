@@ -19,7 +19,13 @@ const OTPSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+},
+{
+    timestamps: true
 })
+
+OTPSchema.index({createdAt: 1},{expireAfterSeconds:600});
+
 
 module.exports = mongoose.model('OTP', OTPSchema);
 
