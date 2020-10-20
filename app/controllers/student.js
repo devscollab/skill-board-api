@@ -130,8 +130,10 @@ exports.updatePassword = async (req, res) => {
   });
 };
 
-exports.setStudentRatingById = (id, rating) =>
-  Student.update({ _id: id }, { $set: { rating: rating } })
+exports.setStudentRatingById = (req, res) => {
+  const id = req.params.id;
+  const {rating} = req.body
+  Student.update({ _id: id }, { $set: { rating} })
     .exec()
     .then((doc) => {
       res.status(200).json({
@@ -145,6 +147,8 @@ exports.setStudentRatingById = (id, rating) =>
         error: err,
       });
     });
+}
+
 
 exports.getSortedListOfStudents = (req, res) => {
   const { prop1, prop2, prop3 } = req.query;

@@ -12,6 +12,8 @@ router.get("/:id", auth.studentAuth, studentController.getStudentProfileById);
 
 router.patch("/update/:id", auth.studentAuth, studentController.updateStudentProfileById);
 
+router.post("/update/:id", auth.studentAuth, studentController.setStudentRatingById)
+
 router.delete("/delete/:id", auth.studentAuth, studentController.deleteStudentProfileById);
 
 router.get("/", auth.studentAuth, studentController.getStudentsByQuery);
