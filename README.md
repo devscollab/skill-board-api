@@ -18,3 +18,7 @@ We have adopted a code of conduct to define community standards, signal a welcom
 ## License
 
 This project is freely available for free non-commercial/ commercial use, and may be redistributed under these conditions. Please, see the [license](https://github.com/devscollab/skill-board-api/blob/master/LICENSE) for further details.
+
+## Development Halt
+
+## This project is under a development halt currently due to lack of contributors. If you wish to work on this repo, please contact before doing so. Thank you! 
